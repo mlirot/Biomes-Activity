@@ -3,66 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioExplorer: Biomes & Succession</title>
+    <title>EcoLab: Interactive Biology</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden-module { display: none; }
-        .active-module { display: block; }
+        .active-module { display: block; animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .definition-box { transition: all 0.3s ease; }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800">
+<body class="bg-gray-100 font-sans text-gray-900">
 
-    <nav class="bg-green-700 text-white p-4 shadow-lg sticky top-0 z-50">
+    <nav class="bg-emerald-800 text-white p-4 shadow-xl sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-xl font-bold italic">BioExplorer</h1>
-            <div class="space-x-4">
-                <button onclick="showModule('intro')" class="hover:underline">Terms</button>
-                <button onclick="showModule('biomes')" class="hover:underline">Biomes</button>
-                <button onclick="showModule('succession')" class="hover:underline">Succession</button>
-                <button onclick="showModule('species')" class="hover:underline">Species</button>
+            <h1 class="text-2xl font-black tracking-tighter">ECOLAB</h1>
+            <div class="hidden md:flex space-x-6 font-medium">
+                <button onclick="showModule('terms')" class="hover:text-emerald-300">1. Terms</button>
+                <button onclick="showModule('biomes')" class="hover:text-emerald-300">2. Biomes</button>
+                <button onclick="showModule('succession')" class="hover:text-emerald-300">3. Succession</button>
+                <button onclick="showModule('species')" class="hover:text-emerald-300">4. Species</button>
             </div>
         </div>
     </nav>
 
-    <main class="container mx-auto mt-8 p-4">
-        
-        <section id="intro" class="active-module space-y-6">
-            <h2 class="text-3xl font-bold text-green-800">Module 1: Foundations</h2>
-            <p>Click a card to learn the definition.</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div onclick="alert('Habitat: The physical place where an organism lives.')" class="bg-white p-6 rounded-xl shadow cursor-pointer hover:bg-green-100 transition border-b-4 border-green-500 text-center">
-                    <h3 class="font-bold text-xl">Habitat</h3>
+    <main class="container mx-auto mt-8 p-4 max-w-5xl">
+
+        <section id="terms" class="active-module space-y-8">
+            <header class="text-center">
+                <h2 class="text-4xl font-bold text-emerald-900">Ecological Foundations</h2>
+                <p class="text-gray-600 mt-2">Click each term to reveal its role in the environment.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button onclick="toggleDef('def-habitat')" class="w-full text-left p-6 hover:bg-emerald-50 font-bold text-xl flex justify-between">
+                        Habitat <span>+</span>
+                    </button>
+                    <div id="def-habitat" class="hidden p-6 bg-emerald-50 border-t border-emerald-100 italic text-emerald-800">
+                        The specific physical place where an organism lives, providing food, water, and shelter. (The "Address")
+                    </div>
                 </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <button onclick="toggleDef('def-niche')" class="w-full text-left p-6 hover:bg-emerald-50 font-bold text-xl flex justify-between">
+                        Niche <span>+</span>
+                    </button>
+                    <div id="def-niche" class="hidden p-6 bg-emerald-50 border-t border-emerald-100 italic text-emerald-800">
+                        The functional role or "job" of a species within its ecosystem, including what it eats and how it survives.
+                    </div>
                 </div>
+            </div>
         </section>
 
         <section id="biomes" class="hidden-module space-y-6">
-            <h2 class="text-3xl font-bold text-blue-800">Module 2: The 6 Great Biomes</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full bg-white rounded-lg shadow">
+            <h2 class="text-3xl font-bold text-blue-900">World Biomes Explorer</h2>
+            <div class="bg-white p-4 rounded-xl shadow-lg">
+                <p class="mb-4 font-semibold text-center text-blue-700 underline">Reference: Global Biome Distribution</p>
+                
+            </div>
+            
+            <div class="overflow-x-auto bg-white rounded-xl shadow">
+                <table class="w-full text-sm text-left">
                     <thead class="bg-blue-600 text-white">
                         <tr>
-                            <th class="p-3 text-left">Biome</th>
-                            <th class="p-3 text-left">Climate</th>
-                            <th class="p-3 text-left">Life</th>
+                            <th class="p-4">Biome</th>
+                            <th class="p-4">Temp</th>
+                            <th class="p-4">Precipitation</th>
+                            <th class="p-4">Life</th>
                         </tr>
                     </thead>
-                    <tbody id="biome-table-body">
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="p-4 font-bold">Tundra</td>
+                            <td class="p-4">-34°C to 12°C</td>
+                            <td class="p-4">15–25 cm (Dry)</td>
+                            <td class="p-4">Mosses, Arctic Fox</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">Rainforest</td>
+                            <td class="p-4">20°C to 34°C</td>
+                            <td class="p-4">>200 cm (Wet)</td>
+                            <td class="p-4">Orchids, Toucans</td>
+                        </tr>
                         </tbody>
                 </table>
+            </div>
+        </section>
+
+        <section id="succession" class="hidden-module space-y-6">
+            <h2 class="text-3xl font-bold text-orange-900">Ecological Succession</h2>
+            <div class="aspect-video rounded-xl shadow-2xl overflow-hidden border-4 border-white">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/V49IovRSJDs" frameborder="0" allowfullscreen></iframe>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white p-6 rounded shadow border-t-4 border-orange-500">
+                    <h3 class="font-bold text-lg mb-2">Primary Succession</h3>
+                    
+
+[Image of stages of primary succession]
+
+                    <p class="text-sm">Occurs on <strong>bare rock</strong>. No soil exists. Pioneer species (lichens) must build soil first.</p>
+                </div>
+                <div class="bg-white p-6 rounded shadow border-t-4 border-blue-500">
+                    <h3 class="font-bold text-lg mb-2">Secondary Succession</h3>
+                    
+
+[Image of stages of secondary succession]
+
+                    <p class="text-sm">Occurs after a disturbance (fire/flood) where <strong>soil remains</strong>. It is much faster!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="species" class="hidden-module space-y-6">
+            <h2 class="text-3xl font-bold text-purple-900">Critical Species Roles</h2>
+            <div class="prose max-w-none bg-white p-8 rounded-xl shadow-lg">
+                <h3 class="text-purple-700">Invasive, Keystone, and Foundation</h3>
+                <p><strong>Invasive Species:</strong> Organisms that are not native to an ecosystem and cause harm. They often lack natural predators, allowing them to outcompete local wildlife (e.g., Zebra Mussels).</p>
+                <p><strong>Keystone Species:</strong> A species that holds the ecosystem together. Their impact is much larger than their population size would suggest (e.g., Sea Otters controlling sea urchins).</p>
+                <p><strong>Foundation Species:</strong> Habitat creators. They physically modify the environment to create the base of an ecosystem (e.g., Coral building reefs).</p>
             </div>
         </section>
 
     </main>
 
     <script>
+        // Module Switcher
         function showModule(moduleId) {
-            // Hide all sections
             document.querySelectorAll('section').forEach(sec => {
                 sec.classList.replace('active-module', 'hidden-module');
             });
-            // Show the selected one
             document.getElementById(moduleId).classList.replace('hidden-module', 'active-module');
+            window.scrollTo(0,0);
+        }
+
+        // Inline Definition Toggle
+        function toggleDef(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
         }
     </script>
 </body>
