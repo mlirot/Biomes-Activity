@@ -3,143 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10th Grade Bio: Ecosystems & Biomes</title>
+    <title>10th Grade Biology: Biomes & Succession</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden-module { display: none; }
-        .active-module { display: block; animation: slideUp 0.4s ease-out; }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .tab-active { border-bottom: 4px solid white; font-weight: bold; }
+        .active-module { display: block; animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .tab-active { background-color: #065f46; border-bottom: 4px solid #34d399; }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen">
+<body class="bg-slate-50 text-slate-900 font-sans">
 
-    <nav class="bg-emerald-900 text-white shadow-2xl sticky top-0 z-50">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center p-4">
-            <h1 class="text-2xl font-black mb-4 md:mb-0">ECO-LEARN 1.0</h1>
-            <div class="flex space-x-2 md:space-x-6 text-sm md:text-base">
-                <button onclick="showModule('terms')" id="btn-terms" class="tab-btn px-2 py-1 tab-active">1. Terms</button>
-                <button onclick="showModule('biomes')" id="btn-biomes" class="tab-btn px-2 py-1">2. Biomes</button>
-                <button onclick="showModule('succession')" id="btn-succession" class="tab-btn px-2 py-1">3. Succession</button>
-                <button onclick="showModule('species')" id="btn-species" class="tab-btn px-2 py-1">4. Species</button>
+    <nav class="bg-emerald-900 text-white sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex flex-wrap justify-between items-center p-4">
+            <span class="text-xl font-black tracking-widest">BIO-INTERACTIVE</span>
+            <div class="flex space-x-1 md:space-x-4">
+                <button onclick="showModule('terms')" id="btn-terms" class="nav-link px-3 py-2 rounded tab-active">Terms</button>
+                <button onclick="showModule('biomes')" id="btn-biomes" class="nav-link px-3 py-2 rounded">Biomes</button>
+                <button onclick="showModule('succession')" id="btn-succession" class="nav-link px-3 py-2 rounded">Succession</button>
+                <button onclick="showModule('species')" id="btn-species" class="nav-link px-3 py-2 rounded">Species</button>
             </div>
         </div>
     </nav>
 
-    <main class="container mx-auto mt-8 p-4 max-w-5xl">
+    <main class="container mx-auto max-w-5xl p-6">
 
-        <section id="terms" class="active-module space-y-6">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-200">
-                <h2 class="text-3xl font-bold text-emerald-800 mb-4">Foundation Terms</h2>
-                <p class="text-gray-600 mb-6">Click a term to see its definition, then try the identification challenge below.</p>
+        <section id="terms" class="active-module space-y-8">
+            <div class="text-center">
+                <h2 class="text-4xl font-bold text-emerald-900">Foundational Terms</h2>
+                <p class="text-slate-600 mt-2">Click each card to reveal the definition.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div onclick="this.querySelector('p').classList.toggle('hidden')" class="bg-white p-6 rounded-xl shadow-sm border-l-8 border-emerald-500 cursor-pointer hover:shadow-md transition">
+                    <h3 class="text-xl font-bold">Habitat</h3>
+                    <p class="hidden mt-4 text-emerald-700 italic">The physical place where an organism lives (its "address"). Provides food, water, and shelter.</p>
+                </div>
+                <div onclick="this.querySelector('p').classList.toggle('hidden')" class="bg-white p-6 rounded-xl shadow-sm border-l-8 border-emerald-500 cursor-pointer hover:shadow-md transition">
+                    <h3 class="text-xl font-bold">Niche</h3>
+                    <p class="hidden mt-4 text-emerald-700 italic">The role or "job" of an organism in its environment—how it eats, survives, and reproduces.</p>
+                </div>
+                <div onclick="this.querySelector('p').classList.toggle('hidden')" class="bg-white p-6 rounded-xl shadow-sm border-l-8 border-emerald-500 cursor-pointer hover:shadow-md transition">
+                    <h3 class="text-xl font-bold">Ecosystem</h3>
+                    <p class="hidden mt-4 text-emerald-700 italic">All living (biotic) and non-living (abiotic) factors in an area interacting as a system.</p>
+                </div>
+                <div onclick="this.querySelector('p').classList.toggle('hidden')" class="bg-white p-6 rounded-xl shadow-sm border-l-8 border-emerald-500 cursor-pointer hover:shadow-md transition">
+                    <h3 class="text-xl font-bold">Biome</h3>
+                    <p class="hidden mt-4 text-emerald-700 italic">A large regional area defined by its climate (temperature/precipitation) and vegetation.</p>
+                </div>
+            </div>
+
+            <div class="bg-emerald-100 p-8 rounded-2xl border-2 border-emerald-200">
+                <h3 class="text-2xl font-bold mb-4">Quiz: Habitat or Niche?</h3>
+                <p id="q-text" class="text-xl mb-6">"A Great Horned Owl hunts small rodents at night in the forest."</p>
+                <div class="flex gap-4">
+                    <button onclick="checkAnswer('Niche')" class="bg-emerald-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-emerald-700">Niche</button>
+                    <button onclick="checkAnswer('Habitat')" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700">Habitat</button>
+                </div>
+                <p id="q-feedback" class="mt-4 font-bold text-lg"></p>
+            </div>
+        </section>
+
+        <section id="biomes" class="hidden-module space-y-8">
+            <h2 class="text-3xl font-bold text-blue-900 border-b-4 border-blue-200 pb-2">World Biomes Explorer</h2>
+            
+            <div class="bg-white p-4 rounded-xl shadow">
+                <p class="text-center font-bold text-gray-500 mb-2">Global Biome Distribution Map</p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div onclick="document.getElementById('def-habitat').classList.toggle('hidden')" class="cursor-pointer p-4 bg-emerald-50 rounded-lg border-2 border-emerald-100 hover:border-emerald-500">
-                        <h3 class="font-bold text-emerald-900 underline">Habitat</h3>
-                        <p id="def-habitat" class="hidden mt-2 text-sm text-emerald-700">The actual physical area where an organism lives. Includes food, water, and shelter.</p>
-                    </div>
-                    <div onclick="document.getElementById('def-niche').classList.toggle('hidden')" class="cursor-pointer p-4 bg-emerald-50 rounded-lg border-2 border-emerald-100 hover:border-emerald-500">
-                        <h3 class="font-bold text-emerald-900 underline">Niche</h3>
-                        <p id="def-niche" class="hidden mt-2 text-sm text-emerald-700">The specific role or 'job' an organism has. How it eats, survives, and interacts.</p>
-                    </div>
-                    <div onclick="document.getElementById('def-ecosystem').classList.toggle('hidden')" class="cursor-pointer p-4 bg-emerald-50 rounded-lg border-2 border-emerald-100 hover:border-emerald-500">
-                        <h3 class="font-bold text-emerald-900 underline">Ecosystem</h3>
-                        <p id="def-ecosystem" class="hidden mt-2 text-sm text-emerald-700">A community of living organisms interacting with their non-living physical environment.</p>
-                    </div>
-                    <div onclick="document.getElementById('def-biome').classList.toggle('hidden')" class="cursor-pointer p-4 bg-emerald-50 rounded-lg border-2 border-emerald-100 hover:border-emerald-500">
-                        <h3 class="font-bold text-emerald-900 underline">Biome</h3>
-                        <p id="def-biome" class="hidden mt-2 text-sm text-emerald-700">A large geographical area with a specific climate and distinct plant/animal life.</p>
-                    </div>
-                </div>
+            </div>
 
-                <div class="mt-10 bg-gray-900 text-white p-6 rounded-xl">
-                    <h3 class="text-xl font-bold mb-4 text-emerald-400">Identification: Habitat vs. Niche</h3>
-                    <p id="term-quiz-q" class="italic text-lg mb-4">"A deep-sea vent provides heat and minerals for tubeworms."</p>
-                    <div class="flex space-x-4">
-                        <button onclick="checkTermQuiz('Habitat')" class="bg-emerald-600 px-4 py-2 rounded hover:bg-emerald-500 transition">Habitat</button>
-                        <button onclick="checkTermQuiz('Niche')" class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition">Niche</button>
-                    </div>
-                    <p id="term-quiz-feedback" class="mt-4 font-bold"></p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded shadow border-t-4 border-blue-500">
+                    <h4 class="font-black text-blue-700">Tundra</h4>
+                    <p class="text-sm"><strong>Temp:</strong> Very Cold | <strong>Precip:</strong> Low<br><strong>Life:</strong> Permafrost, Lichens, Polar Bears</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-t-4 border-green-500">
+                    <h4 class="font-black text-green-700">Tropical Rainforest</h4>
+                    <p class="text-sm"><strong>Temp:</strong> Hot | <strong>Precip:</strong> Very High<br><strong>Life:</strong> Canopy trees, Monkeys, Parrots</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-t-4 border-orange-500">
+                    <h4 class="font-black text-orange-700">Desert</h4>
+                    <p class="text-sm"><strong>Temp:</strong> Extreme | <strong>Precip:</strong> Very Low<br><strong>Life:</strong> Cacti, Camels, Reptiles</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-t-4 border-emerald-700">
+                    <h4 class="font-black text-emerald-700">Taiga (Boreal)</h4>
+                    <p class="text-sm"><strong>Temp:</strong> Cold/Cool | <strong>Precip:</strong> Moderate<br><strong>Life:</strong> Conifers (Pine), Moose, Wolves</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-t-4 border-yellow-500">
+                    <h4 class="font-black text-yellow-700">Grassland</h4>
+                    <p class="text-sm"><strong>Temp:</strong> Moderate | <strong>Precip:</strong> Seasonal<br><strong>Life:</strong> Grasses, Lions, Bison</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow border-t-4 border-red-500">
+                    <h4 class="font-black text-red-700">Temperate Forest</h4>
+                    <p class="text-sm"><strong>Temp:</strong> Seasonal | <strong>Precip:</strong> Moderate/High<br><strong>Life:</strong> Deciduous trees, Deer, Bears</p>
                 </div>
             </div>
         </section>
 
-        <section id="biomes" class="hidden-module space-y-6">
-            <h2 class="text-3xl font-bold text-emerald-900">World Biomes</h2>
+        <section id="succession" class="hidden-module space-y-8">
+            <h2 class="text-3xl font-bold text-orange-800 border-b-4 border-orange-200 pb-2">Succession: How Ecosystems Change</h2>
             
-            
-
-            <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
-                <h3 class="text-xl font-bold mb-4 text-emerald-800">The 6 Major Biomes</h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-gray-100 uppercase text-xs font-bold text-gray-600">
-                                <th class="p-4 border">Biome</th>
-                                <th class="p-4 border">Temp</th>
-                                <th class="p-4 border">Precipitation</th>
-                                <th class="p-4 border">Key Flora/Fauna</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="p-4 border font-bold">Tundra</td><td class="p-4 border">Very Cold</td><td class="p-4 border">Low</td><td class="p-4 border">Mosses, Arctic Fox</td></tr>
-                            <tr><td class="p-4 border font-bold">Rainforest</td><td class="p-4 border">Hot/Humid</td><td class="p-4 border">Very High</td><td class="p-4 border">Vines, Parrots</td></tr>
-                            <tr><td class="p-4 border font-bold">Desert</td><td class="p-4 border">Extreme Hot/Cold</td><td class="p-4 border">Very Low</td><td class="p-4 border">Cacti, Camels</td></tr>
-                            <tr><td class="p-4 border font-bold">Taiga</td><td class="p-4 border">Cool</td><td class="p-4 border">Moderate</td><td class="p-4 border">Evergreens, Moose</td></tr>
-                            <tr><td class="p-4 border font-bold">Grassland</td><td class="p-4 border">Seasonal</td><td class="p-4 border">Moderate</td><td class="p-4 border">Grasses, Bison</td></tr>
-                            <tr><td class="p-4 border font-bold">Deciduous Forest</td><td class="p-4 border">Temperate</td><td class="p-4 border">High</td><td class="p-4 border">Maple Trees, Deer</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <section id="succession" class="hidden-module space-y-6">
-            <h2 class="text-3xl font-bold text-orange-900">Ecological Succession</h2>
-            
-            <div class="bg-black rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+            <div class="bg-black rounded-xl overflow-hidden shadow-2xl">
                 <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/V49IovRSJDs" frameborder="0" allowfullscreen></iframe>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                <div class="bg-white p-6 rounded-xl shadow border-t-8 border-orange-500">
-                    <h3 class="text-xl font-bold mb-2">Primary Succession</h3>
-                    
-
-[Image of stages of primary succession]
-
-                    <p class="text-sm mt-4">Starts with **Bare Rock** (No Soil). Common after volcanic eruptions or retreating glaciers. Needs **Pioneer Species** (Lichens).</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow">
+                    <h3 class="text-xl font-bold text-orange-600 mb-4">Primary Succession</h3><p class="mt-4">Occurs on <strong>bare rock</strong>. No soil exists (e.g., after a volcano). <strong>Pioneer species</strong> like lichens break rock into soil over long periods.</p>
                 </div>
-                <div class="bg-white p-6 rounded-xl shadow border-t-8 border-blue-500">
-                    <h3 class="text-xl font-bold mb-2">Secondary Succession</h3>
+                <div class="bg-white p-6 rounded-xl shadow">
+                    <h3 class="text-xl font-bold text-blue-600 mb-4">Secondary Succession</h3>
                     
 
 [Image of stages of secondary succession]
 
-                    <p class="text-sm mt-4">Starts with **Existing Soil**. Common after forest fires or floods. Much **faster** because nutrients are present.</p>
+                    <p class="mt-4">Occurs after a disturbance where <strong>soil remains</strong> (e.g., forest fire, abandoned farm). It is <strong>faster</strong> because the foundation is already present.</p>
                 </div>
-            </div>
-
-            <div class="bg-orange-50 p-8 rounded-xl border-2 border-orange-200 text-center">
-                <h3 class="text-2xl font-bold mb-4">Which one is faster?</h3>
-                <p class="mb-6">Secondary succession occurs faster because soil and seeds are already there. Nature doesn't have to wait for rocks to break down!</p>
             </div>
         </section>
 
         <section id="species" class="hidden-module space-y-8">
-            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-8 border-purple-600">
-                <h2 class="text-3xl font-bold text-purple-900 mb-6">Invasive, Keystone, and Foundation Species</h2>
-                
-                <div class="space-y-6 text-gray-700 leading-relaxed">
-                    <div class="bg-red-50 p-4 rounded-lg">
-                        <p><strong>Invasive Species:</strong> Non-native organisms that spread rapidly and cause ecological or economic harm. Because they have no natural predators in the new area, they outcompete native species. (Example: Zebra Mussels in the Great Lakes).</p>
-                    </div>
-                    <div class="bg-purple-50 p-4 rounded-lg">
-                        <p><strong>Keystone Species:</strong> A species that has an unusually large effect on its ecosystem. If they are removed, the entire structure collapses. (Example: Sea Otters control urchin populations to save kelp forests).</p>
-                    </div>
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <p><strong>Foundation Species:</strong> Ecosystem engineers. They physically build the environment that others live in. (Example: Corals that build reefs or Beavers that build dams).</p>
-                    </div>
+            <h2 class="text-3xl font-bold text-purple-900 border-b-4 border-purple-200 pb-2">Species Roles</h2>
+            
+            <div class="bg-white p-8 rounded-2xl shadow-lg leading-relaxed space-y-6">
+                <div>
+                    <h3 class="text-2xl font-bold text-red-600">Invasive Species</h3>
+                    <p>Species that are not native to an area and cause harm to the environment or economy. They often outcompete native species because they have no natural predators. <strong>Example: Zebra Mussels.</strong></p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-purple-600">Keystone Species</h3>
+                    <p>A species that has a disproportionately large effect on its ecosystem. If removed, the ecosystem might collapse. <strong>Example: Sea Otters</strong> (who keep sea urchins from eating all the kelp).</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-blue-600">Foundation Species</h3>
+                    <p>Species that play a major role in creating or maintaining a habitat. They are the "engineers." <strong>Example: Corals</strong> (who build the reefs that thousands of other species live in).</p>
                 </div>
             </div>
         </section>
@@ -147,41 +144,37 @@
     </main>
 
     <script>
-        // NAVIGATION LOGIC
-        function showModule(modId) {
+        // Module Toggle
+        function showModule(id) {
             document.querySelectorAll('section').forEach(s => s.classList.add('hidden-module'));
-            document.querySelectorAll('section').forEach(s => s.classList.remove('active-module'));
-            
-            const target = document.getElementById(modId);
-            target.classList.remove('hidden-module');
-            target.classList.add('active-module');
-
-            // Update Tabs
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('tab-active'));
-            document.getElementById('btn-' + modId).classList.add('tab-active');
+            document.getElementById(id).classList.remove('hidden-module');
+            document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('tab-active'));
+            document.getElementById('btn-' + id).classList.add('tab-active');
             window.scrollTo(0,0);
         }
 
-        // TERM QUIZ LOGIC
-        const termQuestions = [
-            { q: "A deep-sea vent provides heat and minerals for tubeworms.", a: "Habitat" },
-            { q: "An owl hunting mice at night to keep the population in check.", a: "Niche" },
-            { q: "A squirrel living in the hollow of an oak tree.", a: "Habitat" },
-            { q: "Bacteria converting nitrogen in the soil into a form plants can use.", a: "Niche" }
+        // Quiz Logic
+        const questions = [
+            { q: "A Great Horned Owl hunts small rodents at night in the forest.", a: "Niche" },
+            { q: "A kelp forest provides shelter for fish and sea urchins.", a: "Habitat" },
+            { q: "A woodpecker creates a nesting hole in a dead tree trunk.", a: "Habitat" },
+            { q: "Bacteria in the soil convert nitrogen into a form plants can use.", a: "Niche" }
         ];
-        let termIdx = 0;
+        let currentQ = 0;
 
-        function checkTermQuiz(answer) {
-            const feedback = document.getElementById('term-quiz-feedback');
-            if(answer === termQuestions[termIdx].a) {
-                feedback.innerHTML = "<span class='text-emerald-400'>Correct! Well done.</span>";
-                termIdx = (termIdx + 1) % termQuestions.length;
+        function checkAnswer(userChoice) {
+            const feedback = document.getElementById('q-feedback');
+            if (userChoice === questions[currentQ].a) {
+                feedback.innerText = "Correct! 🌟";
+                feedback.className = "mt-4 font-bold text-lg text-emerald-600";
+                currentQ = (currentQ + 1) % questions.length;
                 setTimeout(() => {
-                    document.getElementById('term-quiz-q').innerText = termQuestions[termIdx].q;
+                    document.getElementById('q-text').innerText = questions[currentQ].q;
                     feedback.innerText = "";
                 }, 1500);
             } else {
-                feedback.innerHTML = "<span class='text-red-400'>Try again! Remember: Habitat is a place, Niche is a job.</span>";
+                feedback.innerText = "Not quite. Remember: Habitat is the location, Niche is the job!";
+                feedback.className = "mt-4 font-bold text-lg text-red-600";
             }
         }
     </script>
