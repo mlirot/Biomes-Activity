@@ -45,22 +45,23 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div onclick="openModal('Habitat', '<strong>The address:</strong> The physical place where an organism lives.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
+                <div onclick="openModal('Habitat', '<strong>The address:</strong> The physical place where an organism lives. It provides food, water, and shelter.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
                     <h3 class="text-2xl font-bold">Habitat</h3>
                 </div>
-                <div onclick="openModal('Niche', '<strong>The job:</strong> The specific role of an organism—how it eats and survives.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
+                <div onclick="openModal('Niche', '<strong>The job:</strong> The specific role of an organism—how it eats, survives, and interacts with others.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
                     <h3 class="text-2xl font-bold">Niche</h3>
                 </div>
-                <div onclick="openModal('Ecosystem', '<strong>The system:</strong> Living organisms interacting with their environment.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
+                <div onclick="openModal('Ecosystem', '<strong>The system:</strong> A community of living organisms interacting with their non-living environment.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
                     <h3 class="text-2xl font-bold">Ecosystem</h3>
                 </div>
-                <div onclick="openModal('Biome', '<strong>The region:</strong> A large area defined by climate and life.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
+                <div onclick="openModal('Biome', '<strong>The region:</strong> A large area defined by its climate and distinct plant and animal life.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
                     <h3 class="text-2xl font-bold">Biome</h3>
                 </div>
             </div>
 
             <div id="term-quiz-start" class="bg-emerald-800 text-white p-12 rounded-2xl text-center shadow-xl">
                 <h3 class="text-3xl font-bold mb-4 italic uppercase">Ready to test yourself?</h3>
+                <p class="text-emerald-100 mb-8 text-xl font-light">Do you know the difference between Habitat and Niche?</p>
                 <button onclick="startTermQuiz()" class="bg-white text-emerald-900 px-10 py-4 rounded-full font-black hover:bg-emerald-50 shadow-lg transition uppercase">Start Challenge</button>
             </div>
 
@@ -126,20 +127,62 @@
                 <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-orange-500">
                     <img src="primary%20succession.png" alt="Primary Succession" class="w-full h-48 object-cover rounded-xl mb-4">
                     <h3 class="text-xl font-bold text-orange-600 mb-2">Primary Succession</h3>
-                    <p>Occurs on <strong>bare rock</strong>. No soil exists (e.g., after a volcano).</p>
+                    <p>Occurs on <strong>bare rock</strong>. No soil exists (e.g., after a volcano). <strong>Pioneer species</strong> like lichens break rock into soil over long periods.</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-blue-500">
                     <img src="secondary%20succession.png" alt="Secondary Succession" class="w-full h-48 object-cover rounded-xl mb-4">
                     <h3 class="text-xl font-bold text-blue-600 mb-2">Secondary Succession</h3>
-                    <p>Occurs after a disturbance where <strong>soil remains</strong> (e.g., forest fire).</p>
+                    <p>Occurs after a disturbance where <strong>soil remains</strong> (e.g., forest fire, abandoned farm). It is <strong>faster</strong> because the foundation is already present.</p>
+                </div>
+            </div>
+
+            <div id="succ-quiz-start" class="bg-orange-600 text-white p-12 rounded-3xl text-center shadow-xl">
+                <h3 class="text-3xl font-bold mb-4 italic uppercase text-white">The Succession Test</h3>
+                <button onclick="startSuccQuiz()" class="bg-white text-orange-600 px-10 py-4 rounded-full font-black hover:bg-orange-50 shadow-lg uppercase transition">Start Quiz</button>
+            </div>
+
+            <div id="succ-quiz-container" class="hidden bg-white p-10 rounded-3xl shadow-xl border-2 border-orange-200">
+                <div id="succ-quiz-box">
+                    <h4 class="text-sm font-bold text-orange-600 uppercase mb-2">Question <span id="s-num">1</span> of 5</h4>
+                    <p id="s-text" class="text-2xl font-medium mb-8 text-slate-800 italic"></p>
+                    <div id="succ-options" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                    <div id="succ-feedback" class="mt-6 text-center font-bold text-xl min-h-[30px]"></div>
                 </div>
             </div>
         </section>
 
         <section id="species" class="hidden-module space-y-8">
             <h2 class="text-4xl font-black text-purple-900 uppercase">Species Roles</h2>
-            <div class="bg-white p-10 rounded-3xl shadow border-l-8 border-purple-600 text-lg text-slate-700">
-                <p>Learn about Foundation, Keystone, and Invasive species roles within an ecosystem.</p>
+
+            <div class="bg-white p-6 rounded-2xl shadow-lg overflow-hidden border border-purple-100">
+                <h3 class="text-xl font-bold mb-4 text-purple-700">Terms at a Glance</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-purple-50 rounded-xl"><strong>Foundation:</strong> Species that create/engineer the environment (e.g., Corals).</div>
+                    <div class="p-4 bg-purple-50 rounded-xl"><strong>Keystone:</strong> Low population but huge impact on the ecosystem (e.g., Wolves).</div>
+                    <div class="p-4 bg-purple-50 rounded-xl"><strong>Invasive:</strong> Non-native species that cause environmental harm.</div>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 rounded-3xl shadow border-l-8 border-purple-600 text-lg text-slate-700 leading-relaxed">
+                <p class="mb-4">Corals may look more like plants because of their hardened surfaces, but they are actually animals. They grow in large groups to form coral reefs on the seafloor. By modifying the environment, they make it suitable for other organisms to live. We call species that play a unique and essential role in creating and defining their community <strong>“foundation species”</strong>.</p>
+                <p class="mb-4">There are varying sizes of populations of each species in a community. Sometimes a species found in small numbers can have a surprisingly big impact on its community. We call species that have a disproportionately large effect on community structure <strong>“keystone species”</strong>. Gray wolves are a great example. They created more resilient elk herds, aspen trees recovered, and they built dams that supported a host of species. Parrotfish are also keystone species; they feed on macroalgae that would otherwise suffocate corals.</p>
+                <p>And finally we have <strong>“invasive”</strong> species. Japanese knotweed is found in North America and Europe. It quickly grows to form dense patches that completely crowd out native plants. Zebra mussels are another invasive species that displace native species and damage waterways and pipes.</p>
+            </div>
+
+            <div class="bg-white p-10 rounded-3xl shadow-xl">
+                <h3 class="text-2xl font-bold mb-6 text-center uppercase tracking-widest text-slate-500">Identification Challenge</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full border-separate border-spacing-2 text-center">
+                        <thead><tr class="bg-slate-100"><th class="p-4 rounded-lg">Organism</th><th class="p-4 rounded-lg">Role</th></tr></thead>
+                        <tbody>
+                            <tr><td class="p-4 bg-white border font-bold">Corals</td><td class="p-4 border"><input type="text" oninput="checkRole(this, 'Foundation')" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="..."></td></tr>
+                            <tr><td class="p-4 bg-white border font-bold">Gray Wolves</td><td class="p-4 border"><input type="text" oninput="checkRole(this, 'Keystone')" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="..."></td></tr>
+                            <tr><td class="p-4 bg-white border font-bold">Japanese Knotweed</td><td class="p-4 border"><input type="text" oninput="checkRole(this, 'Invasive')" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="..."></td></tr>
+                            <tr><td class="p-4 bg-white border font-bold">Parrotfish</td><td class="p-4 border"><input type="text" oninput="checkRole(this, 'Keystone')" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="..."></td></tr>
+                            <tr><td class="p-4 bg-white border font-bold">Zebra Mussels</td><td class="p-4 border"><input type="text" oninput="checkRole(this, 'Invasive')" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="..."></td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
     </main>
@@ -168,10 +211,10 @@
 
         const termData = [
             { q: "A squirrel builds a nest in a high tree branch.", a: "Habitat" },
-            { q: "A bee transfers pollen while feeding.", a: "Niche" },
-            { q: "A Great Horned Owl hunts rodents at night.", a: "Niche" },
-            { q: "A deep cave with steady temperature.", a: "Habitat" },
-            { q: "A decomposer breaks down leaf litter.", a: "Niche" }
+            { q: "A bee transfers pollen from one flower to another while feeding.", a: "Niche" },
+            { q: "A Great Horned Owl hunts rodents at night to control their population.", a: "Niche" },
+            { q: "A deep cave with steady temperature and high humidity.", a: "Habitat" },
+            { q: "A decomposer breaks down leaf litter on the forest floor.", a: "Niche" }
         ];
         let tIdx = 0;
         function startTermQuiz() {
@@ -189,40 +232,40 @@
             if(ans === termData[tIdx].a) {
                 f.innerText = "🌟 Correct!"; f.className = "mt-6 text-center font-bold text-xl text-green-600";
                 tIdx++;
-                setTimeout(() => { if(tIdx < 5) loadTermQ(); else document.getElementById('term-quiz-box').innerHTML = "<h2 class='text-4xl font-black text-emerald-600 text-center'>COMPLETE!</h2>"; }, 1000);
-            } else { f.innerText = "Try again! Habitat = WHERE, Niche = HOW."; f.className = "mt-6 text-center font-bold text-xl text-red-600"; }
+                setTimeout(() => { if(tIdx < 5) loadTermQ(); else document.getElementById('term-quiz-box').innerHTML = "<h2 class='text-4xl font-black text-emerald-600 text-center'>MASTERED! 🌟</h2>"; }, 1000);
+            } else { f.innerText = "Not quite! Remember: Habitat is WHERE, Niche is HOW."; f.className = "mt-6 text-center font-bold text-xl text-red-600"; }
         }
 
         const biomeInfo = {
             savannah: {
                 title: "Savannah",
-                img: "savanna.png",
-                text: "Savanna, otherwise known as tropical grassland, is found close to the equator. Warm, dry climate with seasonal rain."
+                img: "savanna.png", // Corrected
+                text: "Savanna, otherwise known as tropical grassland, is found close to the equator. The largest savanna expanses are in Africa and South America. This biome has a warm, dry climate, with temperatures ranging from 20-30oC. The annual rainfall is around 50-125 cm. <br><br> Vegetation is mostly grasses, like Rhodes and star grass. Mammals include herds of grazers like antelope, zebra and wildebeest. Predators include lions, hyenas, and wild dogs."
             },
             temp_grass: {
                 title: "Temperate Grassland",
-                img: "grassland.png",
-                text: "Found further away from the equator. Cold winters and hot summers. Home to bison and prairie dogs."
+                img: "grassland.png", // Corrected
+                text: "Found further away from the equator than savanna (e.g., North America, Russia). Rainfall is 25-85 cm/year, mostly as snow in winter. Summers are hot (up to 38oC) and winters are cold. <br><br> Features prairies (tall grass) or steppes (short grass). Animals include bison, prairie dogs, and rattlesnakes."
             },
             rainforest: {
                 title: "Tropical Rainforest",
                 img: "rainforest.png",
-                text: "High rainfall and biodiversity. Constant warm temperatures."
+                text: "Located in the tropics near the equator. Annual rainfall is 300 cm—the most of any biome! Average yearly temperature is 25-30oC. Holds half of Earth's species. <br><br> <strong>U.S. Note:</strong> El Yunque in Puerto Rico is the only tropical rainforest in the U.S. National Forest system."
             },
             temp_forest: {
                 title: "Temperate/Deciduous Forest",
-                img: "deciduous%20forest.png",
-                text: "Features four distinct seasons. Trees lose leaves in the fall."
+                img: "deciduous%20forest.png", // Corrected with space encoding
+                text: "Found at mid-latitudes (Eastern U.S., Europe). Experiences four distinct seasons with an average temp of 10oC. Rainfall is 75-150 cm/year. <br><br> Trees like Oak and Maple are deciduous, losing leaves in the fall. Mammals include deer, black bears, and bobcats."
             },
             taiga: {
                 title: "Taiga / Boreal Forest",
                 img: "taiga.png",
-                text: "Cold and dry. Dominated by coniferous trees like pine and spruce."
+                text: "Largest terrestrial biome (Canada, Russia). Cold and dry; winter temps can drop to -54oC. Precipitation (25-75 cm) is mostly snow. <br><br> Dominated by coniferous trees (pines/spruces). Animals like moose, lynx, and snowshoe hares live here."
             },
             desert: {
                 title: "Desert",
                 img: "desert.png",
-                text: "Lowest precipitation. Extreme temperature swings between day and night."
+                text: "Lowest precipitation (under 50 cm/year). Temperatures can swing from 38oC to -4oC in one night. <br><br> Vegetation like cacti and succulents are adapted to store water. Wildlife includes kangaroo rats and various reptiles."
             }
         };
 
@@ -232,13 +275,51 @@
             document.getElementById('biome-detail-view').classList.remove('hidden');
             document.getElementById('biome-title').innerText = b.title;
             document.getElementById('biome-detail-content').innerHTML = `
-                <img src="${b.img}" alt="${b.title}" class="w-full h-auto rounded-xl shadow mb-6">
+                <img src="${b.img}" alt="${b.title}" class="w-full h-auto rounded-xl shadow mb-6 border-4 border-slate-100">
                 <p>${b.text}</p>
             `;
         }
         function closeBiome() {
             document.getElementById('biome-detail-view').classList.add('hidden');
             document.getElementById('biome-list-view').classList.remove('hidden');
+        }
+
+        const succData = [
+            { q: "A volcano erupts, creating a brand new island of bare lava rock.", a: "Primary" },
+            { q: "A glacier melts away, exposing rock that has never seen soil.", a: "Primary" },
+            { q: "A massive wildfire burns down a forest, but the soil remains.", a: "Secondary" },
+            { q: "An abandoned farm field begins to grow weeds and small bushes.", a: "Secondary" },
+            { q: "Which type of succession occurs at a much FASTER rate?", a: "Secondary" }
+        ];
+        let sIdx = 0;
+        function startSuccQuiz() {
+            document.getElementById('succ-quiz-start').classList.add('hidden');
+            document.getElementById('succ-quiz-container').classList.remove('hidden');
+            loadSuccQ();
+        }
+        function loadSuccQ() {
+            document.getElementById('s-num').innerText = sIdx + 1;
+            document.getElementById('s-text').innerText = succData[sIdx].q;
+            document.getElementById('succ-options').innerHTML = ["Primary", "Secondary"].map(o => 
+                `<button onclick="handleSuccAnswer('${o}')" class="bg-slate-100 p-6 rounded-xl border-2 font-bold text-xl hover:bg-orange-600 hover:text-white transition uppercase">${o}</button>`
+            ).join('');
+            document.getElementById('succ-feedback').innerText = "";
+        }
+        function handleSuccAnswer(ans) {
+            const feedback = document.getElementById('succ-feedback');
+            if(ans === succData[sIdx].a) {
+                feedback.innerText = "✅ Correct!"; feedback.className = "mt-6 text-center font-bold text-xl text-green-600";
+                sIdx++;
+                setTimeout(() => { if(sIdx < 5) loadSuccQ(); else document.getElementById('succ-quiz-box').innerHTML = "<h2 class='text-4xl font-black text-orange-600 text-center'>SUCCESSION PRO! 🌿</h2>"; }, 1000);
+            } else { feedback.innerText = "Hint: Primary = Bare Rock | Secondary = Soil is already there."; feedback.className = "mt-6 text-center font-bold text-xl text-red-600"; }
+        }
+
+        function checkRole(input, correct) {
+            if(input.value.trim().toLowerCase() === correct.toLowerCase()) {
+                input.className = "w-full p-2 border rounded uppercase text-center bg-green-100 border-green-500 font-bold text-green-700";
+            } else if(input.value.length > 2) {
+                input.className = "w-full p-2 border rounded uppercase text-center border-red-500 bg-red-50";
+            }
         }
     </script>
 </body>
