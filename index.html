@@ -32,7 +32,7 @@
         <div class="bg-white rounded-2xl p-8 max-w-lg w-full shadow-2xl relative text-center">
             <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl font-bold hover:text-red-500">&times;</button>
             <h2 id="modal-title" class="text-3xl font-bold text-emerald-800 mb-4 uppercase"></h2>
-            <div id="modal-content" class="text-lg leading-relaxed text-slate-700"></div>
+            <div id="modal-content" class="text-lg leading-relaxed text-slate-700 text-left"></div>
         </div>
     </div>
 
@@ -84,27 +84,21 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div onclick="openBiome('savannah')" class="bg-white p-10 rounded-2xl shadow-md border-t-8 border-yellow-500 cursor-pointer biome-card text-center">
                         <h3 class="text-2xl font-bold uppercase">Savannah</h3>
-                        <p class="text-sm text-slate-500 mt-2">Equatorial Grassland</p>
                     </div>
                     <div onclick="openBiome('temp_grass')" class="bg-white p-10 rounded-2xl shadow-md border-t-8 border-green-400 cursor-pointer biome-card text-center">
                         <h3 class="text-2xl font-bold uppercase">Temperate Grassland</h3>
-                        <p class="text-sm text-slate-500 mt-2">Prairies & Steppes</p>
                     </div>
                     <div onclick="openBiome('rainforest')" class="bg-white p-10 rounded-2xl shadow-md border-t-8 border-emerald-600 cursor-pointer biome-card text-center">
                         <h3 class="text-2xl font-bold uppercase">Tropical Rainforest</h3>
-                        <p class="text-sm text-slate-500 mt-2">High Biodiversity</p>
                     </div>
                     <div onclick="openBiome('temp_forest')" class="bg-white p-10 rounded-2xl shadow-md border-t-8 border-orange-500 cursor-pointer biome-card text-center">
                         <h3 class="text-2xl font-bold uppercase">Temperate Forest</h3>
-                        <p class="text-sm text-slate-500 mt-2">Seasonal & Deciduous</p>
                     </div>
                     <div onclick="openBiome('taiga')" class="bg-white p-10 rounded-2xl shadow-md border-t-8 border-blue-600 cursor-pointer biome-card text-center">
                         <h3 class="text-2xl font-bold uppercase">Taiga</h3>
-                        <p class="text-sm text-slate-500 mt-2">Boreal Coniferous Forest</p>
                     </div>
                     <div onclick="openBiome('desert')" class="bg-white p-10 rounded-2xl shadow-md border-t-8 border-red-400 cursor-pointer biome-card text-center">
                         <h3 class="text-2xl font-bold uppercase">Desert</h3>
-                        <p class="text-sm text-slate-500 mt-2">Extreme Temperatures</p>
                     </div>
                 </div>
             </div>
@@ -114,7 +108,7 @@
                    <h2 id="biome-title" class="text-3xl font-black italic uppercase"></h2>
                    <button onclick="closeBiome()" class="bg-white text-black px-4 py-2 rounded-lg font-bold hover:bg-slate-200">← Back</button>
                 </div>
-                <div id="biome-detail-content" class="p-8 md:p-12 leading-relaxed"></div>
+                <div id="biome-detail-content" class="p-8 md:p-12 leading-relaxed text-lg text-slate-700 space-y-4"></div>
             </div>
         </section>
 
@@ -127,22 +121,23 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-orange-500">
                     <h3 class="text-xl font-bold text-orange-600 mb-2">Primary Succession</h3>
-                    <p class="text-slate-700">Occurs on <strong>bare rock</strong>. No soil exists (e.g., after a volcano). <strong>Pioneer species</strong> like lichens break rock into soil over long periods.</p>
+                    <p>Occurs on <strong>bare rock</strong>. No soil exists (e.g., after a volcano). <strong>Pioneer species</strong> like lichens break rock into soil over long periods.</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-blue-500">
                     <h3 class="text-xl font-bold text-blue-600 mb-2">Secondary Succession</h3>
-                    <p class="text-slate-700">Occurs after a disturbance where <strong>soil remains</strong> (e.g., forest fire, abandoned farm). It is <strong>faster</strong> because the foundation is already present.</p>
+                    <p>Occurs after a disturbance where <strong>soil remains</strong> (e.g., forest fire, abandoned farm). It is <strong>faster</strong> because the foundation is already present.</p>
                 </div>
             </div>
 
             <div id="succ-quiz-start" class="bg-orange-600 text-white p-12 rounded-3xl text-center shadow-xl">
-                <h3 class="text-3xl font-bold mb-4 italic uppercase">Primary or Secondary?</h3>
-                <p class="mb-8 text-xl font-light">Take the quiz to see what you know!</p>
+                <h3 class="text-3xl font-bold mb-4 italic uppercase text-white">Succession Challenge</h3>
+                <p class="mb-8 text-xl font-light">Test your knowledge on how ecosystems recover!</p>
                 <button onclick="startSuccQuiz()" class="bg-white text-orange-600 px-10 py-4 rounded-full font-black hover:bg-orange-50 shadow-lg uppercase transition">Start Quiz</button>
             </div>
 
             <div id="succ-quiz-container" class="hidden bg-white p-10 rounded-3xl shadow-xl border-2 border-orange-200">
                 <div id="succ-quiz-box">
+                    <h4 class="text-sm font-bold text-orange-600 uppercase mb-2">Question <span id="s-num">1</span> of 5</h4>
                     <p id="s-text" class="text-2xl font-medium mb-8 text-slate-800 italic"></p>
                     <div id="succ-options" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                     <div id="succ-feedback" class="mt-6 text-center font-bold text-xl min-h-[30px]"></div>
@@ -153,19 +148,10 @@
         <section id="species" class="hidden-module space-y-8">
             <h2 class="text-4xl font-black text-purple-900 uppercase">Species Roles</h2>
 
-            <div class="bg-white p-6 rounded-2xl shadow-lg">
-                <h3 class="text-xl font-bold mb-4 text-purple-600">Quick Reference Guide</h3>
-                <table class="w-full text-left">
-                    <tr class="border-b"><td class="py-2 font-bold">Foundation Species</td><td class="py-2">Create and define the community (engineers).</td></tr>
-                    <tr class="border-b"><td class="py-2 font-bold">Keystone Species</td><td class="py-2">Small numbers, but a massive impact on the ecosystem.</td></tr>
-                    <tr><td class="py-2 font-bold">Invasive Species</td><td class="py-2">Non-native species that cause environmental or economic harm.</td></tr>
-                </table>
-            </div>
-
             <div class="bg-white p-10 rounded-3xl shadow border-l-8 border-purple-600 text-lg text-slate-700 leading-relaxed">
-                <p class="mb-4">Corals may look more like plants because of their hardened surfaces, but they are actually animals. They grow in large groups to form coral reefs on the seafloor. By modifying the environment, they make it suitable for other organisms to live. We call species that play a unique and essential role in creating and defining their community <strong>“foundation species”</strong>.</p>
-                <p class="mb-4">We call species that have a disproportionately large effect on community structure <strong>“keystone species”</strong>. Gray wolves are a great example. They created more resilient elk herds, aspen trees recovered, and they built dams that supported a host of species. Parrotfish are also keystone species; they feed on macroalgae that would otherwise suffocate corals.</p>
-                <p>Finally, <strong>“invasive”</strong> species are introduced to areas outside their native range and cause harm. <strong>Japanese knotweed</strong> crowds out native plants, and <strong>Zebra mussels</strong> damage waterways and pipes.</p>
+                <p class="mb-4">Corals may look more like plants because of their hardened surfaces, but they are actually animals. They grow in large groups to form coral reefs on the seafloor. By modifying the environment, they make it suitable for other organisms to live. We call species that play a unique and essential role in creating and defining their community <strong>“foundation species”</strong>. Kelps are another type of foundation species, creating vast kelp forests for other species to live within.</p>
+                <p class="mb-4">There are varying sizes of populations of each species in a community. Sometimes a species found in small numbers can have a surprisingly big impact on its community. We call species that have a disproportionately large effect on community structure <strong>“keystone species”</strong>. Gray wolves are a great example. When wolves were reintroduced to YellowStone National Park in 1995, the changes were remarkable. They created more resilient elk herds, aspen trees recovered, beaver colonies increased from 1 to 9, and they built dams that supported a whole other host of species. The effects of the wolves are still being researched and monitored. Parrotfish are also keystone species. They feed on macroalgae, found on corals. Without parrotfish, the macroalgae would completely cover the corals, suffocating and killing them. This would be bad news for the 25% of the world’s fishes who depend on coral reef.</p>
+                <p>And finally we have <strong>“invasive”</strong> species. These are species that have been introduced to areas outside of their native range and can cause or have caused harm. For example, Japanese knotweed (Reynoutria japonica) is found in North America and Europe. It is considered by the World Conservation Union as one of the world's worst invasive species. It quickly grows to form dense patches that completely crowd out native plants. Zebra mussels are another invasive species. They are believed to have spread by the passage of boats and ships from Eastern Europe to other parts of the world. They are now found as invasive species in Western Europe and North America, where they displace native species and damage waterways and pipes.</p>
             </div>
 
             <div class="bg-white p-10 rounded-3xl shadow-xl">
@@ -187,14 +173,12 @@
     </main>
 
     <script>
-        // NAVIGATION (Ensures tabs are completely isolated)
+        // NAVIGATION
         function showModule(id) {
             document.querySelectorAll('section').forEach(s => s.classList.add('hidden-module'));
             document.getElementById(id).classList.remove('hidden-module');
             document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('tab-active'));
             document.getElementById('btn-' + id).classList.add('tab-active');
-            
-            // Special: Close biome detail if we switch tabs
             if(id !== 'biomes') closeBiome();
             window.scrollTo(0,0);
         }
@@ -207,13 +191,13 @@
         }
         function closeModal() { document.getElementById('vocab-modal').classList.add('hidden'); }
 
-        // TERM QUIZ LOGIC (With Inline Feedback)
+        // TERM QUIZ
         const termData = [
-            { q: "A woodpecker lives in a hole in a coniferous tree.", a: "Habitat" },
-            { q: "A bee pollinates flowers while gathering nectar.", a: "Niche" },
+            { q: "A squirrel builds a nest in a high tree branch.", a: "Habitat" },
+            { q: "A bee transfers pollen from one flower to another while feeding.", a: "Niche" },
+            { q: "A Great Horned Owl hunts rodents at night to control their population.", a: "Niche" },
             { q: "A deep cave with steady temperature and high humidity.", a: "Habitat" },
-            { q: "An owl hunting mice at night to control rodent populations.", a: "Niche" },
-            { q: "Bacteria breaking down a rotting log to return nutrients to soil.", a: "Niche" }
+            { q: "A decomposer breaks down leaf litter on the forest floor.", a: "Niche" }
         ];
         let tIdx = 0;
         function startTermQuiz() {
@@ -227,47 +211,61 @@
             document.getElementById('term-feedback').innerText = "";
         }
         function handleTermAnswer(ans) {
-            const feedback = document.getElementById('term-feedback');
+            const f = document.getElementById('term-feedback');
             if(ans === termData[tIdx].a) {
-                feedback.innerText = "🌟 Correct!";
-                feedback.className = "mt-6 text-center font-bold text-xl text-green-600";
+                f.innerText = "🌟 Correct!"; f.className = "mt-6 text-center font-bold text-xl text-green-600";
                 tIdx++;
-                setTimeout(() => {
-                    if(tIdx < termData.length) loadTermQ();
-                    else document.getElementById('term-quiz-box').innerHTML = "<div class='text-center py-10'><h2 class='text-4xl font-black text-emerald-600'>MASTERED! 🌟</h2></div>";
-                }, 1000);
-            } else {
-                feedback.innerText = "Not quite! Remember: Habitat is WHERE, Niche is HOW.";
-                feedback.className = "mt-6 text-center font-bold text-xl text-red-600";
-            }
+                setTimeout(() => { if(tIdx < 5) loadTermQ(); else document.getElementById('term-quiz-box').innerHTML = "<h2 class='text-4xl font-black text-emerald-600 text-center'>MASTERED! 🌟</h2>"; }, 1000);
+            } else { f.innerText = "Not quite! Remember: Habitat is WHERE, Niche is HOW."; f.className = "mt-6 text-center font-bold text-xl text-red-600"; }
         }
 
-        // BIOME DETAIL LOGIC
+        // BIOME DATA (Full text restored)
         const biomeInfo = {
-            savannah: { title: "Savannah", text: "Savanna, otherwise known as tropical grassland, is found close to the equator... [Rest of your text]" },
-            temp_grass: { title: "Temperate Grassland", text: "Found further from the equator. summers are hot, up to 38oC... [Rest of your text]" },
-            rainforest: { title: "Tropical Rainforest", text: "Lies close to the equator. Average yearly temp is 25-30oC... [Rest of your text]" },
-            temp_forest: { title: "Temperate Forest", text: "Experiences all four seasons. Mammals include deer and black bears... [Rest of your text]" },
-            taiga: { title: "Taiga", text: "Large coniferous forest found at high northern latitudes... [Rest of your text]" },
-            desert: { title: "Desert", text: "Lowest precipitation of all biomes. Vegetation consists of cacti... [Rest of your text]" }
+            savannah: {
+                title: "Savannah",
+                text: "Savanna, otherwise known as tropical grassland, is found close to the equator. The largest savanna expanses are in Africa and South America. This biome has a warm, dry climate, with temperatures ranging from 20-30oC. The annual rainfall is around 50-125 cm. This falls during the wet season, transforming the land as vegetation rapidly grows. In the dry season, drought conditions can occur and there is mass migration of many animals to find water. <br><br> The vegetation is mostly grasses, such as Rhodes grass and star grass. There are a few shrubs and occasional trees, like the Acacia tree and the Baobab trees. There is not enough rainfall to sustain larger numbers of trees. <br><br> Many large mammals live here, including herds of grazers like antelope, zebra and wildebeest. There are also many species of predators, including lions, hyenas, cheetahs and wild dogs. Scavengers are common too, like vultures and jackals. Hyenas and lions are known to scavenge or steal other predators meals too!"
+            },
+            temp_grass: {
+                title: "Temperate Grassland",
+                text: "Temperate grasslands are found further away from the equator than savanna grasslands. They are found in South Africa, Hungary, Argentina, North America, Russia and other countries. There is less rainfall than in the savanna. Around 25-85 cm of precipitation falls each year, and most of this is snow in the winter. The temperatures vary greatly between summer and winter - summers are hot, up to 38oC, and winters are cold. <br><br> Prairies and steppes are two types of temperate grassland; the difference is in the length of grasses that grow there. Prairies have taller grasses, while steppes have shorter grasses. <br><br> Due to little precipitation, there are very few to no trees or shrubs. Vegetation consists of grasses such as ryegrass, buffalo grass, purple needlegrass and foxtail. Animals found here include herds of bison and antelope; smaller mammals such as prairie dogs and jack rabbits; and predators and scavengers such as coyotes, falcons, foxes and lynx. Several species of snakes also thrive in grasslands, including the garter snake and the poisonous rattlesnake."
+            },
+            rainforest: {
+                title: "Tropical Rainforest",
+                text: "This biome lies close to the equator, in an area called the tropics. The Amazon rainforest in Brazil and other parts of South America is the largest tropical rainforest in the world. As the name suggests, there is a lot of rainfall - 300 cm annually - which is the most of any biome. The average yearly temperature is between 25-30oC and this does not fluctuate much; it is warm all year. <br><br> Here, there is a very high level of biodiversity - tropical rainforests are home to more than half of Earth’s plant and animal species, even though they cover just 6% of the Earth’s surface. There are hundreds of species of birds, butterflies and mammals, and thousands of insect species. Mammals found there include howler monkeys, sloths, bats, pygmy gliders, gorillas, jaguars, capybara, and many more. <br><br> The vegetation forms a dense canopy of giant trees that can grow to heights of 75 m (about 250ft), while ferns and mosses cover much of the forest floor. There are over 2500 species of vine and the Brazil Nut Tree can live for over 1,000 years in undisturbed forest. <br><br> <strong>Local Context:</strong> While North America is mostly temperate, the Tongass National Forest in Alaska is a rare temperate rainforest, and El Yunque in Puerto Rico is the only tropical rainforest in the U.S. National Forest System!"
+            },
+            temp_forest: {
+                title: "Temperate/Deciduous Forest",
+                text: "Temperate forest, also known as deciduous forest, is found at mid-latitudes, between the polar regions and the tropics. Europe, Eastern U.S., Canada, China and Japan all have temperate forests. This biome experiences all four seasons, with warm summers and cold winters, often below freezing. The yearly average temperature is around 10oC. There is a lot of rainfall - around 75-150 cm per year. <br><br> There are many species of trees found here, including oak, maple, beech and birch. The majority of trees are deciduous, which means they lose their leaves in the fall/autumn, entering a period of dormancy to survive the cold winter. <br><br> Some animals hibernate or migrate in the winter. Mammals found here include squirrels, deer, black dears, bobcats, chipmunks and migratory birds."
+            },
+            taiga: {
+                title: "Taiga / Boreal Forest",
+                text: "There are many names for this biome! The taiga is found at high northern latitudes and usually at high elevations. It is the largest terrestrial biome, found across Canada and much of northern Russia and Scandinavia. This is a very cold and dry biome, where precipitation occurs primarily in the form of snow (around 25 -75 cm). The average temperature in winter is -54°C to -1°C, while the temperatures in summer are -7°C to 21°C. <br><br> The trees here are usually coniferous, which means they have needles and cones. Examples include pines and spruces. There may be occasional deciduous trees such as oak and birch, and some shrubs and ferns. <br><br> The animals found here have adaptations for the cold climate, such as thick fur and a smaller surface area to volume ratio (smaller extremities like ears). Mammals found here include wolves, moose, lynx and snowshoe hares."
+            },
+            desert: {
+                title: "Desert",
+                text: "Desert biomes are very inhospitable environments. They are found in North, Central and South America, southern Asia, Africa and Australia. They have the lowest amount of precipitation of all of the biomes - below 50 cm per year. They can be either hot or cold, and these temperature fluctuations can occur overnight (from 38oC to -4oC). Due to these extreme conditions, the organisms that live here must be very well adapted to their environment. <br><br> The vegetation consists of cacti, succulents, thorny bushes and shrubs, and short grasses. These are very well adapted to the absorption and storage of what little water they gain access to. <br><br> There are few mammals that can survive here. Bats, kangaroo rats, black-tailed jackrabbits are among the mammals found here. There are many reptile species, including lizards and snakes, that use behavioral strategies to regulate their body temperature."
+            }
         };
+
         function openBiome(key) {
             const b = biomeInfo[key];
             document.getElementById('biome-list-view').classList.add('hidden');
             document.getElementById('biome-detail-view').classList.remove('hidden');
             document.getElementById('biome-title').innerText = b.title;
-            document.getElementById('biome-detail-content').innerHTML = `<p class='text-lg'>${b.text}</p>`;
+            document.getElementById('biome-detail-content').innerHTML = b.text;
         }
         function closeBiome() {
             document.getElementById('biome-detail-view').classList.add('hidden');
             document.getElementById('biome-list-view').classList.remove('hidden');
         }
 
-        // SUCCESSION QUIZ (With Inline Feedback)
+        // SUCCESSION QUIZ (5 Questions)
         const succData = [
-            { q: "A volcano erupts, leaving behind a new island of bare rock.", a: "Primary" },
-            { q: "A massive forest fire clears all trees, but soil remains.", a: "Secondary" },
-            { q: "Which type of succession occurs much FASTER?", a: "Secondary" }
+            { q: "A new island forms from a cooling lava flow in the ocean.", a: "Primary" },
+            { q: "A glacier retreats, exposing bare rock for the first time.", a: "Primary" },
+            { q: "A forest is cleared by a wildfire, but the soil remains intact.", a: "Secondary" },
+            { q: "An abandoned farm field begins to grow grass and small shrubs.", a: "Secondary" },
+            { q: "Which type of succession occurs at a much faster rate?", a: "Secondary" }
         ];
         let sIdx = 0;
         function startSuccQuiz() {
@@ -276,29 +274,23 @@
             loadSuccQ();
         }
         function loadSuccQ() {
+            document.getElementById('s-num').innerText = sIdx + 1;
             document.getElementById('s-text').innerText = succData[sIdx].q;
             document.getElementById('succ-options').innerHTML = ["Primary", "Secondary"].map(o => 
-                `<button onclick="handleSuccAnswer('${o}')" class="bg-slate-100 p-6 rounded-xl border-2 font-bold text-xl hover:bg-orange-600 hover:text-white transition">${o}</button>`
+                `<button onclick="handleSuccAnswer('${o}')" class="bg-slate-100 p-6 rounded-xl border-2 font-bold text-xl hover:bg-orange-600 hover:text-white transition uppercase">${o}</button>`
             ).join('');
             document.getElementById('succ-feedback').innerText = "";
         }
         function handleSuccAnswer(ans) {
             const feedback = document.getElementById('succ-feedback');
             if(ans === succData[sIdx].a) {
-                feedback.innerText = "✅ Correct!";
-                feedback.className = "mt-6 text-center font-bold text-xl text-green-600";
+                feedback.innerText = "✅ Correct!"; feedback.className = "mt-6 text-center font-bold text-xl text-green-600";
                 sIdx++;
-                setTimeout(() => {
-                    if(sIdx < succData.length) loadSuccQ();
-                    else document.getElementById('succ-quiz-box').innerHTML = "<div class='text-center py-10 text-orange-600 font-black text-3xl'>SUCCESSION EXPERT!</div>";
-                }, 1000);
-            } else {
-                feedback.innerText = "Hint: If soil is already there, it's Secondary!";
-                feedback.className = "mt-6 text-center font-bold text-xl text-red-600";
-            }
+                setTimeout(() => { if(sIdx < 5) loadSuccQ(); else document.getElementById('succ-quiz-box').innerHTML = "<h2 class='text-4xl font-black text-orange-600 text-center'>SUCCESSION EXPERT! 🌿</h2>"; }, 1000);
+            } else { feedback.innerText = "Hint: If soil is present, it is Secondary!"; feedback.className = "mt-6 text-center font-bold text-xl text-red-600"; }
         }
 
-        // SPECIES CHECKER
+        // SPECIES ROLE CHECKER
         function checkRole(input, correct) {
             if(input.value.trim().toLowerCase() === correct.toLowerCase()) {
                 input.className = "w-full p-2 border rounded uppercase text-center bg-green-100 border-green-500 font-bold text-green-700";
