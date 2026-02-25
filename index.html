@@ -18,9 +18,9 @@
 
     <nav class="bg-emerald-900 text-white sticky top-0 z-50 shadow-lg">
         <div class="container mx-auto flex flex-wrap justify-between items-center p-4">
-            <span class="text-xl font-black tracking-widest cursor-pointer" onclick="showModule('intro')">BIO-INTERACTIVE</span>
+            <span class="text-xl font-black tracking-widest">BIO-INTERACTIVE</span>
             <div class="flex space-x-2">
-                <button onclick="showModule('terms')" id="btn-terms" class="nav-link px-3 py-2 rounded">Terms</button>
+                <button onclick="showModule('terms')" id="btn-terms" class="nav-link px-3 py-2 rounded tab-active">Terms</button>
                 <button onclick="showModule('biomes')" id="btn-biomes" class="nav-link px-3 py-2 rounded">Biomes</button>
                 <button onclick="showModule('succession')" id="btn-succession" class="nav-link px-3 py-2 rounded">Succession</button>
                 <button onclick="showModule('species')" id="btn-species" class="nav-link px-3 py-2 rounded">Species</button>
@@ -38,21 +38,7 @@
 
     <main class="container mx-auto max-w-5xl p-6">
 
-        <section id="intro" class="active-module py-20">
-            <div class="bg-white rounded-3xl shadow-2xl p-12 text-center border-t-8 border-emerald-600">
-                <h1 class="text-5xl md:text-6xl font-black text-emerald-900 mb-6 uppercase tracking-tight">Biomes Activity Challenge</h1>
-                <div class="max-w-2xl mx-auto">
-                    <p class="text-xl text-slate-600 mb-8 leading-relaxed">
-                        <strong>Directions:</strong> Click through each tab to learn the info and complete the activity. When you are done with each tab you will get a quiz!
-                    </p>
-                    <button onclick="showModule('terms')" class="bg-emerald-600 text-white px-12 py-5 rounded-full text-2xl font-bold hover:bg-emerald-700 shadow-xl transition transform hover:scale-105 uppercase tracking-wider">
-                        Start Activity
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="terms" class="hidden-module space-y-12">
+        <section id="terms" class="active-module space-y-12">
             <div class="text-center">
                 <h2 class="text-4xl font-black text-emerald-900 uppercase tracking-tight">Foundational Terms</h2>
                 <p class="text-slate-600 mt-2 text-lg">Click each card to see the definition and examples.</p>
@@ -62,7 +48,7 @@
                 <div onclick="openModal('Habitat', '<strong>The address:</strong> The physical place where an organism lives.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
                     <h3 class="text-2xl font-bold">Habitat</h3>
                 </div>
-                <div onclick="openModal('Niche', '<strong>The job:</strong> The specific role of an organism—how it survives.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
+                <div onclick="openModal('Niche', '<strong>The job:</strong> The specific role of an organism—how it eats and survives.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
                     <h3 class="text-2xl font-bold">Niche</h3>
                 </div>
                 <div onclick="openModal('Ecosystem', '<strong>The system:</strong> Living organisms interacting with their environment.')" class="bg-white p-8 rounded-xl shadow cursor-pointer border-b-8 border-emerald-500 biome-card text-center">
@@ -94,9 +80,11 @@
         <section id="biomes" class="hidden-module space-y-8">
             <div id="biome-list-view">
                 <h2 class="text-4xl font-black text-blue-900 mb-6 uppercase tracking-tighter text-center">Biome Catalog</h2>
+                
                 <div class="mb-10 rounded-3xl overflow-hidden shadow-lg border-4 border-white bg-white p-2">
                     <img src="biome%20map.png" alt="World Biome Map" class="w-full h-auto rounded-2xl">
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div onclick="openBiome('savannah')" class="bg-white p-10 rounded-2xl shadow-md border-t-8 border-yellow-500 cursor-pointer biome-card text-center">
                         <h3 class="text-2xl font-bold uppercase">Savannah</h3>
@@ -118,6 +106,7 @@
                     </div>
                 </div>
             </div>
+
             <div id="biome-detail-view" class="hidden bg-white rounded-3xl shadow-2xl overflow-hidden min-h-[500px]">
                 <div class="p-8 bg-slate-900 text-white flex justify-between items-center">
                    <h2 id="biome-title" class="text-3xl font-black italic uppercase"></h2>
@@ -132,6 +121,7 @@
             <div class="bg-black rounded-3xl overflow-hidden shadow-2xl border-8 border-white">
                 <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/V49IovRSJDs" frameborder="0" allowfullscreen></iframe>
             </div>
+
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="bg-white p-6 rounded-2xl shadow-lg border-l-8 border-orange-500">
                     <img src="primary%20succession.png" alt="Primary Succession" class="w-full h-48 object-cover rounded-xl mb-4">
@@ -149,7 +139,7 @@
         <section id="species" class="hidden-module space-y-8">
             <h2 class="text-4xl font-black text-purple-900 uppercase">Species Roles</h2>
             <div class="bg-white p-10 rounded-3xl shadow border-l-8 border-purple-600 text-lg text-slate-700">
-                <p>Corals are foundation species. Wolves are keystone species. Zebra mussels are invasive.</p>
+                <p>Learn about Foundation, Keystone, and Invasive species roles within an ecosystem.</p>
             </div>
         </section>
     </main>
@@ -163,11 +153,8 @@
             const target = document.getElementById(id);
             target.classList.remove('hidden-module');
             target.classList.add('active-module');
-            
             document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('tab-active'));
-            const activeBtn = document.getElementById('btn-' + id);
-            if (activeBtn) activeBtn.classList.add('tab-active');
-            
+            document.getElementById('btn-' + id).classList.add('tab-active');
             if(id !== 'biomes') closeBiome();
             window.scrollTo(0,0);
         }
@@ -179,7 +166,6 @@
         }
         function closeModal() { document.getElementById('vocab-modal').classList.add('hidden'); }
 
-        // Quiz Logic
         const termData = [
             { q: "A squirrel builds a nest in a high tree branch.", a: "Habitat" },
             { q: "A bee transfers pollen while feeding.", a: "Niche" },
@@ -207,14 +193,37 @@
             } else { f.innerText = "Try again! Habitat = WHERE, Niche = HOW."; f.className = "mt-6 text-center font-bold text-xl text-red-600"; }
         }
 
-        // Biome Data
         const biomeInfo = {
-            savannah: { title: "Savannah", img: "savanna.png", text: "Savanna, otherwise known as tropical grassland, is found close to the equator. Warm, dry climate with seasonal rain." },
-            temp_grass: { title: "Temperate Grassland", img: "grassland.png", text: "Found further away from the equator. Cold winters and hot summers." },
-            rainforest: { title: "Tropical Rainforest", img: "rainforest.png", text: "High rainfall and biodiversity. Constant warm temperatures." },
-            temp_forest: { title: "Temperate/Deciduous Forest", img: "deciduous%20forest.png", text: "Features four distinct seasons. Trees lose leaves in the fall." },
-            taiga: { title: "Taiga / Boreal Forest", img: "taiga.png", text: "Cold and dry. Dominated by coniferous trees like pine and spruce." },
-            desert: { title: "Desert", img: "desert.png", text: "Lowest precipitation. Extreme temperature swings between day and night." }
+            savannah: {
+                title: "Savannah",
+                img: "savanna.png",
+                text: "Savanna, otherwise known as tropical grassland, is found close to the equator. Warm, dry climate with seasonal rain."
+            },
+            temp_grass: {
+                title: "Temperate Grassland",
+                img: "grassland.png",
+                text: "Found further away from the equator. Cold winters and hot summers. Home to bison and prairie dogs."
+            },
+            rainforest: {
+                title: "Tropical Rainforest",
+                img: "rainforest.png",
+                text: "High rainfall and biodiversity. Constant warm temperatures."
+            },
+            temp_forest: {
+                title: "Temperate/Deciduous Forest",
+                img: "deciduous%20forest.png",
+                text: "Features four distinct seasons. Trees lose leaves in the fall."
+            },
+            taiga: {
+                title: "Taiga / Boreal Forest",
+                img: "taiga.png",
+                text: "Cold and dry. Dominated by coniferous trees like pine and spruce."
+            },
+            desert: {
+                title: "Desert",
+                img: "desert.png",
+                text: "Lowest precipitation. Extreme temperature swings between day and night."
+            }
         };
 
         function openBiome(key) {
