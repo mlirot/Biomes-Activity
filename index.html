@@ -6,8 +6,8 @@
     <title>Bio-Interactive: 10th Grade</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .hidden-module { display: none; }
-        .active-module { display: block; animation: fadeIn 0.4s ease-in; }
+        .hidden-module { display: none !important; }
+        .active-module { display: block !important; animation: fadeIn 0.4s ease-in; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .modal { background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
         .tab-active { background-color: #065f46; border-bottom: 4px solid #34d399; }
@@ -82,8 +82,8 @@
             <div id="biome-list-view">
                 <h2 class="text-4xl font-black text-blue-900 mb-6 uppercase tracking-tighter text-center">Biome Catalog</h2>
                 
-                <div class="mb-10 rounded-3xl overflow-hidden shadow-lg border-4 border-white">
-                    <img src="YOUR_MAP_FILENAME.jpg" alt="World Biome Map" class="w-full h-auto">
+                <div class="mb-10 rounded-3xl overflow-hidden shadow-lg border-4 border-white bg-white p-2">
+                    <img src="world_map.jpg" alt="World Biome Map" class="w-full h-auto rounded-2xl">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -186,12 +186,23 @@
     </main>
 
     <script>
-        // NAVIGATION (Ensures complete tab isolation)
+        // NAVIGATION FIX
         function showModule(id) {
-            document.querySelectorAll('section').forEach(s => s.classList.add('hidden-module'));
-            document.getElementById(id).classList.remove('hidden-module');
+            // Hide every section completely
+            document.querySelectorAll('main > section').forEach(s => {
+                s.classList.add('hidden-module');
+                s.classList.remove('active-module');
+            });
+            // Show only the selected section
+            const target = document.getElementById(id);
+            target.classList.remove('hidden-module');
+            target.classList.add('active-module');
+            
+            // Update Tab UI
             document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('tab-active'));
             document.getElementById('btn-' + id).classList.add('tab-active');
+            
+            // Cleanup
             if(id !== 'biomes') closeBiome();
             window.scrollTo(0,0);
         }
@@ -204,7 +215,7 @@
         }
         function closeModal() { document.getElementById('vocab-modal').classList.add('hidden'); }
 
-        // TERMS QUIZ (Inline Hints)
+        // TERMS QUIZ
         const termData = [
             { q: "A squirrel builds a nest in a high tree branch.", a: "Habitat" },
             { q: "A bee transfers pollen from one flower to another while feeding.", a: "Niche" },
@@ -232,7 +243,7 @@
             } else { f.innerText = "Not quite! Remember: Habitat is WHERE, Niche is HOW."; f.className = "mt-6 text-center font-bold text-xl text-red-600"; }
         }
 
-        // BIOME DATA (Full restoration of all text)
+        // BIOME DATA (Full text restored)
         const biomeInfo = {
             savannah: {
                 title: "Savannah",
@@ -265,8 +276,11 @@
             document.getElementById('biome-list-view').classList.add('hidden');
             document.getElementById('biome-detail-view').classList.remove('hidden');
             document.getElementById('biome-title').innerText = b.title;
+            // INSERT IMAGE PLACEHOLDER HERE
             document.getElementById('biome-detail-content').innerHTML = `
-                <img src="${key}_image.jpg" class="w-full h-80 object-cover rounded-3xl mb-6 shadow-md">
+                <div class='bg-slate-200 w-full h-64 rounded-xl flex items-center justify-center mb-6 italic text-slate-500'>
+                    [Insert ${b.title} Image Here]
+                </div>
                 <p>${b.text}</p>
             `;
         }
@@ -275,7 +289,7 @@
             document.getElementById('biome-list-view').classList.remove('hidden');
         }
 
-        // SUCCESSION QUIZ (5 Questions with Speed Question)
+        // SUCCESSION QUIZ
         const succData = [
             { q: "A volcano erupts, creating a brand new island of bare lava rock.", a: "Primary" },
             { q: "A glacier melts away, exposing rock that has never seen soil.", a: "Primary" },
