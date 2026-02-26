@@ -15,15 +15,13 @@
         .mastery-unlocked { background-color: #d97706 !important; color: white !important; cursor: pointer !important; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
         .cert-card { border: 15px double #065f46; background: white; padding: 50px; border-radius: 1rem; position: relative; }
-        .cert-seal { position: absolute; bottom: 20px; right: 20px; width: 100px; }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-900 font-sans min-h-screen flex">
 
-    <aside class="w-72 bg-white h-screen sticky top-0 border-r flex flex-col shadow-xl">
+    <aside class="w-72 bg-white h-screen sticky top-0 border-r flex flex-col shadow-xl z-50">
         <div class="p-6 border-b">
             <h1 class="text-2xl font-black text-emerald-900 leading-tight">BIO<br>INTERACTIVE</h1>
-            <p class="text-xs text-slate-400 font-bold mt-2 uppercase tracking-widest">10th Grade Foundations</p>
         </div>
         
         <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
@@ -54,30 +52,22 @@
                 <span>MASTERY QUIZ</span>
             </button>
         </nav>
-        
-        <div class="p-4 bg-slate-50 text-[10px] text-slate-400 text-center uppercase font-bold tracking-tighter">
-            Score 70% to Earn Certificate
-        </div>
     </aside>
 
-    <main class="flex-1 p-10 overflow-y-auto">
+    <main class="flex-1 p-10">
 
         <div id="vocab-modal" class="hidden fixed inset-0 z-[100] modal flex items-center justify-center p-4">
             <div class="bg-white rounded-2xl p-8 max-w-lg w-full shadow-2xl relative">
                 <button onclick="closeModal()" class="absolute top-4 right-4 text-2xl font-bold hover:text-red-500">&times;</button>
                 <h2 id="modal-title" class="text-3xl font-bold text-emerald-800 mb-4 uppercase"></h2>
-                <div id="modal-content" class="text-lg leading-relaxed text-slate-700"></div>
+                <div id="modal-content" class="text-lg text-slate-700"></div>
             </div>
         </div>
 
-        <section id="intro" class="active-module">
-            <div class="max-w-3xl mx-auto text-center py-20">
-                <h2 class="text-6xl font-black text-slate-800 mb-6 uppercase">Ready to Master?</h2>
-                <p class="text-xl text-slate-600 mb-10 leading-relaxed">
-                    Navigate through the four sections in the sidebar. Once you have completed the interactive checks in each, the <strong>Mastery Quiz</strong> will unlock.
-                </p>
-                <button onclick="showModule('terms')" class="bg-emerald-600 text-white px-12 py-5 rounded-full text-xl font-bold shadow-lg hover:bg-emerald-700 transition">Begin with Terms</button>
-            </div>
+        <section id="intro" class="active-module max-w-3xl mx-auto text-center py-20">
+            <h2 class="text-6xl font-black text-slate-800 mb-6 uppercase">Ready to Master?</h2>
+            <p class="text-xl text-slate-600 mb-10">Complete all four sections to unlock the Final Mastery Quiz. Score 70% to pass!</p>
+            <button onclick="showModule('terms')" class="bg-emerald-600 text-white px-12 py-5 rounded-full text-xl font-bold shadow-lg hover:bg-emerald-700 transition">Begin Journey</button>
         </section>
 
         <section id="terms" class="hidden-module space-y-12">
@@ -86,122 +76,92 @@
                 <div onclick="openModal('Habitat', '<strong>The address:</strong> The physical place where an organism lives.')" class="bg-white p-6 rounded-xl shadow cursor-pointer border-b-4 border-emerald-500 hover:bg-emerald-50 transition">
                     <h3 class="text-xl font-bold">Habitat</h3>
                 </div>
-                <div onclick="openModal('Niche', '<strong>The job:</strong> The specific role of an organism within its habitat.')" class="bg-white p-6 rounded-xl shadow cursor-pointer border-b-4 border-emerald-500 hover:bg-emerald-50 transition">
+                <div onclick="openModal('Niche', '<strong>The job:</strong> The specific role of an organism.')" class="bg-white p-6 rounded-xl shadow cursor-pointer border-b-4 border-emerald-500 hover:bg-emerald-50 transition">
                     <h3 class="text-xl font-bold">Niche</h3>
                 </div>
-                <div onclick="openModal('Ecosystem', '<strong>The system:</strong> A community of living organisms interacting with their non-living environment.')" class="bg-white p-6 rounded-xl shadow cursor-pointer border-b-4 border-emerald-500 hover:bg-emerald-50 transition">
+                <div onclick="openModal('Ecosystem', '<strong>The system:</strong> Community interacting with non-living environment.')" class="bg-white p-6 rounded-xl shadow cursor-pointer border-b-4 border-emerald-500 hover:bg-emerald-50 transition">
                     <h3 class="text-xl font-bold">Ecosystem</h3>
                 </div>
-                <div onclick="openModal('Biome', '<strong>The region:</strong> A large geographical area defined by climate, vegetation, and wildlife.')" class="bg-white p-6 rounded-xl shadow cursor-pointer border-b-4 border-emerald-500 hover:bg-emerald-50 transition">
+                <div onclick="openModal('Biome', '<strong>The region:</strong> Large area defined by climate and life.')" class="bg-white p-6 rounded-xl shadow cursor-pointer border-b-4 border-emerald-500 hover:bg-emerald-50 transition">
                     <h3 class="text-xl font-bold">Biome</h3>
                 </div>
             </div>
-            <div id="term-quiz-start" class="bg-emerald-800 text-white p-12 rounded-2xl text-center shadow-xl">
-                <h3 class="text-2xl font-bold mb-4 uppercase italic">Term Quick Check</h3>
-                <button onclick="startTermQuiz()" class="bg-white text-emerald-900 px-10 py-4 rounded-full font-black hover:bg-emerald-50 transition uppercase">Start Check</button>
-            </div>
-            <div id="term-quiz-container" class="hidden bg-white p-10 rounded-2xl shadow-xl border border-emerald-100">
-                <div id="term-quiz-box">
-                    <p id="t-text" class="text-2xl font-medium mb-8 text-slate-800"></p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <button onclick="handleTermAnswer('Habitat')" class="bg-slate-100 p-6 rounded-xl font-bold text-xl hover:bg-emerald-600 hover:text-white transition">Habitat</button>
-                        <button onclick="handleTermAnswer('Niche')" class="bg-slate-100 p-6 rounded-xl font-bold text-xl hover:bg-emerald-600 hover:text-white transition">Niche</button>
-                    </div>
+            <div id="term-quiz-box" class="bg-white p-10 rounded-2xl shadow-xl border border-emerald-100 text-center">
+                <h3 class="text-2xl font-bold mb-6">Quick Check: Habitat or Niche?</h3>
+                <p id="t-text" class="text-2xl font-medium mb-8 text-slate-800 italic">Click "Start" to begin...</p>
+                <div id="t-btns" class="hidden grid grid-cols-2 gap-4 max-w-md mx-auto">
+                    <button onclick="handleTermAnswer('Habitat')" class="bg-slate-100 p-6 rounded-xl font-bold text-xl hover:bg-emerald-600 hover:text-white transition">Habitat</button>
+                    <button onclick="handleTermAnswer('Niche')" class="bg-slate-100 p-6 rounded-xl font-bold text-xl hover:bg-emerald-600 hover:text-white transition">Niche</button>
                 </div>
+                <button id="t-start" onclick="startTermQuiz()" class="bg-emerald-800 text-white px-10 py-4 rounded-full font-black uppercase">Start Quiz</button>
+                <p id="t-hint" class="mt-4 text-red-500 font-bold min-h-[24px]"></p>
             </div>
         </section>
 
         <section id="biomes" class="hidden-module space-y-8">
             <div id="biome-list-view">
                 <h2 class="text-4xl font-black text-blue-900 mb-6 uppercase">Biome Catalog</h2>
-                <div class="mb-10 rounded-2xl overflow-hidden border-4 border-white shadow-lg">
-                    
-                    <img src="biome%20map.png" alt="Biome Map" class="w-full h-auto">
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div onclick="openBiome('savannah')" class="bg-white p-8 rounded-xl shadow-md border-t-8 border-yellow-500 cursor-pointer hover:bg-yellow-50">
-                        <h3 class="text-xl font-bold uppercase">Savannah</h3>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div onclick="openBiome('savannah')" class="bg-white p-6 rounded-xl shadow border-t-4 border-yellow-500 cursor-pointer hover:bg-yellow-50">
+                        <h3 class="text-lg font-bold uppercase">Savannah</h3>
                     </div>
-                    <div onclick="openBiome('temp_grass')" class="bg-white p-8 rounded-xl shadow-md border-t-8 border-green-400 cursor-pointer hover:bg-green-50">
-                        <h3 class="text-xl font-bold uppercase">Temperate Grassland</h3>
+                    <div onclick="openBiome('temp_grass')" class="bg-white p-6 rounded-xl shadow border-t-4 border-green-400 cursor-pointer hover:bg-green-50">
+                        <h3 class="text-lg font-bold uppercase">Grassland</h3>
                     </div>
-                    <div onclick="openBiome('rainforest')" class="bg-white p-8 rounded-xl shadow-md border-t-8 border-emerald-600 cursor-pointer hover:bg-emerald-50">
-                        <h3 class="text-xl font-bold uppercase">Tropical Rainforest</h3>
+                    <div onclick="openBiome('rainforest')" class="bg-white p-6 rounded-xl shadow border-t-4 border-emerald-600 cursor-pointer hover:bg-emerald-50">
+                        <h3 class="text-lg font-bold uppercase">Rainforest</h3>
                     </div>
-                    <div onclick="openBiome('temp_forest')" class="bg-white p-8 rounded-xl shadow-md border-t-8 border-orange-500 cursor-pointer hover:bg-orange-50">
-                        <h3 class="text-xl font-bold uppercase">Temperate Forest</h3>
+                    <div onclick="openBiome('temp_forest')" class="bg-white p-6 rounded-xl shadow border-t-4 border-orange-500 cursor-pointer hover:bg-orange-50">
+                        <h3 class="text-lg font-bold uppercase">Forest</h3>
                     </div>
-                    <div onclick="openBiome('taiga')" class="bg-white p-8 rounded-xl shadow-md border-t-8 border-blue-600 cursor-pointer hover:bg-blue-50">
-                        <h3 class="text-xl font-bold uppercase">Taiga</h3>
+                    <div onclick="openBiome('taiga')" class="bg-white p-6 rounded-xl shadow border-t-4 border-blue-600 cursor-pointer hover:bg-blue-50">
+                        <h3 class="text-lg font-bold uppercase">Taiga</h3>
                     </div>
-                    <div onclick="openBiome('desert')" class="bg-white p-8 rounded-xl shadow-md border-t-8 border-red-400 cursor-pointer hover:bg-red-50">
-                        <h3 class="text-xl font-bold uppercase">Desert</h3>
+                    <div onclick="openBiome('desert')" class="bg-white p-6 rounded-xl shadow border-t-4 border-red-400 cursor-pointer hover:bg-red-50">
+                        <h3 class="text-lg font-bold uppercase">Desert</h3>
                     </div>
                 </div>
             </div>
-            <div id="biome-detail-view" class="hidden bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div id="biome-detail-view" class="hidden bg-white rounded-2xl shadow-2xl overflow-hidden max-w-4xl mx-auto">
                 <div class="p-6 bg-slate-900 text-white flex justify-between items-center">
                    <h2 id="biome-title" class="text-2xl font-black uppercase"></h2>
-                   <button onclick="closeBiome()" class="bg-emerald-500 text-white px-4 py-2 rounded font-bold">Back to List</button>
+                   <button onclick="closeBiome()" class="bg-emerald-500 text-white px-4 py-2 rounded font-bold">Back</button>
                 </div>
                 <div id="biome-detail-content" class="p-10 leading-relaxed text-lg text-slate-700"></div>
             </div>
         </section>
 
         <section id="succession" class="hidden-module space-y-8">
-            <h2 class="text-4xl font-black text-orange-900 uppercase">Ecological Succession</h2>
-            <div class="bg-black rounded-2xl overflow-hidden shadow-2xl">
-                <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/V49IovRSJDs" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow border-l-8 border-orange-500">
-                    
-                    <img src="primary%20succession.png" class="w-full h-40 object-cover rounded mb-4">
-                    <h3 class="font-bold text-orange-600">Primary Succession</h3>
-                    <p class="text-sm">Starts on bare rock (volcanoes/glaciers). No soil present.</p>
-                </div>
-                <div class="bg-white p-6 rounded-2xl shadow border-l-8 border-blue-500">
-                    
-                    <img src="secondary%20succession.png" class="w-full h-40 object-cover rounded mb-4">
-                    <h3 class="font-bold text-blue-600">Secondary Succession</h3>
-                    <p class="text-sm">Starts with soil already present (fires/abandoned farms). Faster.</p>
-                </div>
-            </div>
-            <div id="succ-quiz-start" class="bg-orange-600 text-white p-10 rounded-2xl text-center">
-                <h3 class="text-2xl font-bold mb-4">Succession Check</h3>
-                <button onclick="startSuccQuiz()" class="bg-white text-orange-600 px-10 py-4 rounded-full font-black uppercase">Start Quiz</button>
-            </div>
-            <div id="succ-quiz-container" class="hidden bg-white p-10 rounded-2xl shadow border border-orange-100">
-                <div id="succ-quiz-box">
-                    <p id="s-text" class="text-2xl font-medium mb-8 text-slate-800"></p>
-                    <div id="succ-options" class="grid grid-cols-2 gap-4"></div>
-                </div>
+            <h2 class="text-4xl font-black text-orange-900 uppercase">Succession</h2>
+            <div class="bg-black rounded-2xl overflow-hidden"><iframe class="w-full aspect-video" src="https://www.youtube.com/embed/V49IovRSJDs" frameborder="0"></iframe></div>
+            <div id="succ-quiz-box" class="bg-white p-10 rounded-2xl shadow-xl text-center">
+                <p id="s-text" class="text-2xl font-medium mb-8 text-slate-800 italic">Test your knowledge of primary vs secondary...</p>
+                <div id="s-btns" class="hidden grid grid-cols-2 gap-4 max-w-md mx-auto"></div>
+                <button id="s-start" onclick="startSuccQuiz()" class="bg-orange-600 text-white px-10 py-4 rounded-full font-black uppercase">Start Challenge</button>
+                <p id="s-hint" class="mt-4 text-red-500 font-bold min-h-[24px]"></p>
             </div>
         </section>
 
         <section id="species" class="hidden-module space-y-8">
             <h2 class="text-4xl font-black text-purple-900 uppercase">Species Roles</h2>
-            <div class="bg-white p-8 rounded-2xl shadow-lg text-lg leading-relaxed text-slate-700">
-                <p class="mb-4">Corals are <strong>“foundation species”</strong> because they build the environment. Gray wolves and parrotfish are <strong>“keystone species”</strong> because they have massive impacts despite smaller populations. <strong>“Invasive”</strong> species like Japanese knotweed or zebra mussels cause harm to ecosystems they aren't native to.</p>
-            </div>
-            <div class="bg-white p-8 rounded-2xl shadow-xl">
-                <h3 class="text-xl font-bold mb-6 text-slate-400 uppercase">Check the Species Roles</h3>
-                <table class="w-full border-separate border-spacing-2">
+            <div class="bg-white p-8 rounded-2xl shadow leading-relaxed text-slate-700">
+                <p class="mb-4">Corals are <strong>“foundation species”</strong>. Gray wolves and parrotfish are <strong>“keystone species”</strong>. Invasive species like <strong>Japanese knotweed</strong> crowd out native life.</p>
+                <table class="w-full border-separate border-spacing-2 mt-6">
                     <tbody id="species-rows">
-                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Corals</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Foundation')" class="w-full p-2 border rounded text-center uppercase" placeholder="Type role..."></td></tr>
-                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Gray Wolves</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Keystone')" class="w-full p-2 border rounded text-center uppercase" placeholder="Type role..."></td></tr>
-                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Japanese Knotweed</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Invasive')" class="w-full p-2 border rounded text-center uppercase" placeholder="Type role..."></td></tr>
-                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Parrotfish</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Keystone')" class="w-full p-2 border rounded text-center uppercase" placeholder="Type role..."></td></tr>
-                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Zebra Mussels</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Invasive')" class="w-full p-2 border rounded text-center uppercase" placeholder="Type role..."></td></tr>
+                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Corals</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Foundation')" class="w-full p-2 border rounded text-center uppercase" placeholder="Role?"></td></tr>
+                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Gray Wolves</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Keystone')" class="w-full p-2 border rounded text-center uppercase" placeholder="Role?"></td></tr>
+                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Japanese Knotweed</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Invasive')" class="w-full p-2 border rounded text-center uppercase" placeholder="Role?"></td></tr>
+                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Parrotfish</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Keystone')" class="w-full p-2 border rounded text-center uppercase" placeholder="Role?"></td></tr>
+                        <tr><td class="p-4 bg-slate-50 font-bold rounded-l-lg">Zebra Mussels</td><td class="p-2"><input type="text" oninput="checkRole(this, 'Invasive')" class="w-full p-2 border rounded text-center uppercase" placeholder="Role?"></td></tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <section id="mastery-quiz" class="hidden-module max-w-4xl mx-auto py-10">
-            <div id="mastery-box" class="bg-white p-12 rounded-2xl shadow-2xl border-t-8 border-amber-500">
+        <section id="mastery-quiz" class="hidden-module py-10">
+            <div id="mastery-box" class="bg-white p-12 rounded-2xl shadow-2xl border-t-8 border-amber-500 max-w-4xl mx-auto">
                 <div id="m-content">
-                    <h2 class="text-3xl font-black text-slate-800 mb-2 uppercase tracking-tight">Final Mastery Quiz</h2>
+                    <h2 class="text-3xl font-black text-slate-800 mb-2 uppercase">Final Mastery Quiz</h2>
                     <p class="text-slate-400 font-bold mb-8">Question <span id="m-num">1</span> of 15</p>
                     <p id="m-text" class="text-3xl font-bold text-emerald-900 mb-10 leading-tight"></p>
                     <div id="m-options" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
@@ -214,144 +174,97 @@
         let progress = { terms: false, biomes: false, succession: false, species: false };
         let biomesViewed = 0;
 
-        function updateProgress(section) {
-            progress[section] = true;
-            document.getElementById('stat-' + section).innerText = '✅';
-            document.getElementById('stat-' + section).classList.add('text-emerald-500');
-            
-            if (Object.values(progress).every(v => v === true)) {
-                const masteryBtn = document.getElementById('nav-mastery');
-                masteryBtn.classList.remove('locked');
-                masteryBtn.classList.add('mastery-unlocked');
-            }
-        }
-
         function showModule(id) {
             document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden-module'));
             document.getElementById(id).classList.remove('hidden-module');
             document.getElementById(id).classList.add('active-module');
-            
             document.querySelectorAll('.sidebar-link').forEach(btn => btn.classList.remove('active'));
             const activeNav = document.getElementById('nav-' + id);
             if(activeNav) activeNav.classList.add('active');
             window.scrollTo(0,0);
         }
 
-        function attemptMastery() {
+        function updateProgress(section) {
+            progress[section] = true;
+            document.getElementById('stat-' + section).innerText = '✅';
+            document.getElementById('stat-' + section).classList.add('text-emerald-500');
             if (Object.values(progress).every(v => v === true)) {
-                showModule('mastery-quiz');
-                loadMasteryQ();
-            } else {
-                alert("Please complete all sections (✅) before taking the final quiz!");
+                const mb = document.getElementById('nav-mastery');
+                mb.classList.remove('locked'); mb.classList.add('mastery-unlocked');
             }
         }
 
-        function openModal(title, content) {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-content').innerHTML = content;
-            document.getElementById('vocab-modal').classList.remove('hidden');
-        }
-        function closeModal() { document.getElementById('vocab-modal').classList.add('hidden'); }
-
-        // Terms Quiz
-        const termData = [
-            { q: "A squirrel builds a nest in a high tree branch.", a: "Habitat" },
-            { q: "A bee transfers pollen from one flower to another.", a: "Niche" },
-            { q: "A Great Horned Owl hunts rodents at night to control population.", a: "Niche" },
-            { q: "A deep cave with steady temperature and high humidity.", a: "Habitat" },
-            { q: "A decomposer breaks down leaf litter on the forest floor.", a: "Niche" }
-        ];
+        // Terms
+        const termData = [{q:"Squirrel nest in a tree.",a:"Habitat"},{q:"Bee transferring pollen.",a:"Niche"},{q:"Owl hunting at night.",a:"Niche"},{q:"Deep humid cave.",a:"Habitat"},{q:"Decomposer in soil.",a:"Niche"}];
         let tIdx = 0;
         function startTermQuiz() {
-            document.getElementById('term-quiz-start').classList.add('hidden');
-            document.getElementById('term-quiz-container').classList.remove('hidden');
+            document.getElementById('t-start').classList.add('hidden');
+            document.getElementById('t-btns').classList.remove('hidden');
             loadTermQ();
         }
-        function loadTermQ() {
-            document.getElementById('t-text').innerText = termData[tIdx].q;
-        }
+        function loadTermQ() { document.getElementById('t-text').innerText = termData[tIdx].q; document.getElementById('t-hint').innerText = ""; }
         function handleTermAnswer(ans) {
             if(ans === termData[tIdx].a) {
                 tIdx++;
-                if(tIdx < 5) loadTermQ(); 
-                else {
-                    document.getElementById('term-quiz-box').innerHTML = "<h2 class='text-3xl font-black text-emerald-600 text-center uppercase'>Section Complete!</h2>";
-                    updateProgress('terms');
-                }
-            } else { alert("Try again! Habitat is the place, Niche is the job."); }
+                if(tIdx < 5) loadTermQ();
+                else { document.getElementById('term-quiz-box').innerHTML = "<h2 class='text-3xl font-bold text-emerald-600'>TERMS MASTERED!</h2>"; updateProgress('terms'); }
+            } else { document.getElementById('t-hint').innerText = "Hint: Habitat is WHERE, Niche is JOB."; }
         }
 
         // Biomes
         const biomeInfo = {
-            savannah: { title: "Savannah", text: "Warm, dry climate (20-30°C). Vegetation is mostly grasses. Animals include herds of grazers like antelope and predators like lions." },
-            temp_grass: { title: "Temperate Grassland", text: "Found further from equator. Rainfall is 25-85 cm/year, mostly snow in winter. Features prairies or steppes." },
-            rainforest: { title: "Tropical Rainforest", text: "Near equator. Over 300 cm of rain. Holds half of Earth's species. <br><br><strong>El Yunque</strong> in Puerto Rico is the only tropical rainforest in the U.S. National Forest system." },
-            temp_forest: { title: "Temperate Forest", text: "Four seasons. Average temp of 10°C. Trees like Oak and Maple are deciduous, losing leaves in fall." },
-            taiga: { title: "Taiga", text: "Largest terrestrial biome. Cold and dry. Dominated by coniferous trees (pines). Animals: moose, lynx." },
-            desert: { title: "Desert", text: "Lowest precipitation (under 50 cm/year). Extreme temperature swings from day to night." }
+            savannah: { title: "Savannah", text: "<br><br>Warm, dry climate (20-30°C). Dominated by grasses and scattered trees. Home to grazers like antelope and predators like lions." },
+            temp_grass: { title: "Temperate Grassland", text: "<br><br>Hot summers and cold winters. Rainfall is 25-85 cm/year, mostly snow in winter. Features prairies or steppes. Home to bison." },
+            rainforest: { title: "Tropical Rainforest", text: "<br><br>Near equator. Over 300 cm of rain. Holds half of Earth's species. <strong>El Yunque</strong> in Puerto Rico is the only tropical rainforest in the U.S. National Forest system." },
+            temp_forest: { title: "Temperate Forest", text: "<br><br>Four seasons. Average temp of 10°C. Trees like Oak and Maple are deciduous, losing leaves in fall. Animals include deer and black bears." },
+            taiga: { title: "Taiga", text: "<br><br>Largest terrestrial biome. Cold and dry. Dominated by coniferous trees (pines). Animals: moose, lynx, and snowshoe hares." },
+            desert: { title: "Desert", text: "<br><br>Lowest precipitation (under 50 cm/year). Extreme temperature swings from scorching days to freezing nights. Vegetation like cacti store water." }
         };
-
         function openBiome(key) {
             const b = biomeInfo[key];
             document.getElementById('biome-list-view').classList.add('hidden');
             document.getElementById('biome-detail-view').classList.remove('hidden');
             document.getElementById('biome-title').innerText = b.title;
-            document.getElementById('biome-detail-content').innerHTML = `<p>${b.text}</p>`;
-            biomesViewed++;
-            if(biomesViewed >= 3) updateProgress('biomes');
+            document.getElementById('biome-detail-content').innerHTML = b.text;
+            biomesViewed++; if(biomesViewed >= 3) updateProgress('biomes');
         }
-        function closeBiome() {
-            document.getElementById('biome-detail-view').classList.add('hidden');
-            document.getElementById('biome-list-view').classList.remove('hidden');
-        }
+        function closeBiome() { document.getElementById('biome-detail-view').classList.add('hidden'); document.getElementById('biome-list-view').classList.remove('hidden'); }
 
         // Succession
-        const succData = [
-            { q: "A volcano erupts, creating a brand new island of bare lava rock.", a: "Primary" },
-            { q: "A glacier melts away, exposing rock that has never seen soil.", a: "Primary" },
-            { q: "A massive wildfire burns down a forest, but the soil remains.", a: "Secondary" },
-            { q: "An abandoned farm field begins to grow weeds and small bushes.", a: "Secondary" },
-            { q: "Which type of succession occurs at a much FASTER rate?", a: "Secondary" }
-        ];
+        const succData = [{q:"Volcano creates bare lava rock.",a:"Primary"},{q:"Glacier leaves behind bare rock.",a:"Primary"},{q:"Wildfire burns forest, soil stays.",a:"Secondary"},{q:"Abandoned farm grows weeds.",a:"Secondary"},{q:"Which is faster?",a:"Secondary"}];
         let sIdx = 0;
         function startSuccQuiz() {
-            document.getElementById('succ-quiz-start').classList.add('hidden');
-            document.getElementById('succ-quiz-container').classList.remove('hidden');
+            document.getElementById('s-start').classList.add('hidden');
+            document.getElementById('s-btns').classList.remove('hidden');
             loadSuccQ();
         }
         function loadSuccQ() {
             document.getElementById('s-text').innerText = succData[sIdx].q;
-            document.getElementById('succ-options').innerHTML = ["Primary", "Secondary"].map(o => 
-                `<button onclick="handleSuccAnswer('${o}')" class="bg-slate-100 p-6 rounded-xl border-2 font-bold text-xl hover:bg-orange-600 hover:text-white transition uppercase">${o}</button>`
-            ).join('');
+            document.getElementById('s-btns').innerHTML = ["Primary", "Secondary"].map(o => `<button onclick="handleSuccAnswer('${o}')" class="bg-slate-100 p-6 rounded-xl font-bold hover:bg-orange-600 hover:text-white transition">${o}</button>`).join('');
+            document.getElementById('s-hint').innerText = "";
         }
         function handleSuccAnswer(ans) {
             if(ans === succData[sIdx].a) {
-                sIdx++;
-                if(sIdx < 5) loadSuccQ(); 
-                else {
-                    document.getElementById('succ-quiz-box').innerHTML = "<h2 class='text-3xl font-black text-orange-600 text-center uppercase'>Section Complete!</h2>";
-                    updateProgress('succession');
-                }
-            } else { alert("Hint: Primary starts on Rock. Secondary starts on Soil."); }
+                sIdx++; if(sIdx < 5) loadSuccQ();
+                else { document.getElementById('succ-quiz-box').innerHTML = "<h2 class='text-3xl font-bold text-orange-600'>SUCCESSION PRO!</h2>"; updateProgress('succession'); }
+            } else { document.getElementById('s-hint').innerText = "Hint: Primary = Rock, Secondary = Soil."; }
         }
 
-        // Species Role
+        // Species
         let speciesCorrect = 0;
         function checkRole(input, correct) {
             if(input.value.trim().toLowerCase() === correct.toLowerCase()) {
-                input.className = "w-full p-2 border rounded bg-green-100 border-green-500 font-bold text-green-700 text-center";
-                input.disabled = true;
-                speciesCorrect++;
+                input.className = "w-full p-2 border rounded bg-green-100 text-green-700 font-bold text-center";
+                input.disabled = true; speciesCorrect++;
                 if(speciesCorrect === 5) updateProgress('species');
             }
         }
 
-        // Final Mastery Quiz Logic
+        // Mastery Quiz
         const masteryQuestions = [
             {q: "Which biome has 4 seasons and deciduous trees?", o: ["Taiga", "Rainforest", "Temperate Forest", "Savannah"], a: "Temperate Forest"},
             {q: "The physical place where an organism lives is its:", o: ["Niche", "Habitat", "Ecosystem", "Biome"], a: "Habitat"},
-            {q: "Succession on bare rock (after a glacier) is:", o: ["Primary", "Secondary", "Pioneer", "Disturbance"], a: "Primary"},
+            {q: "Succession on bare rock is:", o: ["Primary", "Secondary", "Pioneer", "Disturbance"], a: "Primary"},
             {q: "Which species has a massive impact despite small numbers?", o: ["Invasive", "Keystone", "Foundation", "Pioneer"], a: "Keystone"},
             {q: "This biome is cold, dry, and dominated by pine trees:", o: ["Desert", "Taiga", "Savannah", "Rainforest"], a: "Taiga"},
             {q: "The specific 'job' or role of an organism is its:", o: ["Habitat", "Niche", "Biome", "Species"], a: "Niche"},
@@ -365,56 +278,28 @@
             {q: "Which biome has lowest precipitation and extreme temp swings?", o: ["Rainforest", "Grassland", "Desert", "Taiga"], a: "Desert"},
             {q: "Prairies in the U.S. Midwest are part of which biome?", o: ["Savannah", "Temperate Grassland", "Rainforest", "Desert"], a: "Temperate Grassland"}
         ];
-
         let mIdx = 0; let mScore = 0;
+        function attemptMastery() { if (Object.values(progress).every(v => v === true)) showModule('mastery-quiz'); loadMasteryQ(); }
         function loadMasteryQ() {
             const data = masteryQuestions[mIdx];
             document.getElementById('m-num').innerText = mIdx + 1;
             document.getElementById('m-text').innerText = data.q;
-            const optionsDiv = document.getElementById('m-options');
-            optionsDiv.innerHTML = '';
-            data.o.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = "bg-slate-50 p-6 rounded-xl font-bold text-lg hover:bg-emerald-600 hover:text-white transition text-left border-2 border-slate-100 hover:border-emerald-600";
-                btn.innerText = opt;
-                btn.onclick = () => {
-                    if(opt === data.a) mScore++;
-                    mIdx++;
-                    if(mIdx < 15) loadMasteryQ();
-                    else finishMastery();
-                };
-                optionsDiv.appendChild(btn);
-            });
+            document.getElementById('m-options').innerHTML = data.o.map(opt => `<button onclick="handleMastery('${opt}')" class="bg-slate-50 p-6 rounded-xl font-bold border-2 hover:bg-emerald-600 hover:text-white transition">${opt}</button>`).join('');
         }
-
+        function handleMastery(opt) {
+            if(opt === masteryQuestions[mIdx].a) mScore++;
+            mIdx++; if(mIdx < 15) loadMasteryQ(); else finishMastery();
+        }
         function finishMastery() {
-            const percentage = Math.round((mScore / 15) * 100);
+            const pct = Math.round((mScore/15)*100);
             const box = document.getElementById('mastery-box');
-            if (percentage >= 70) {
-                box.innerHTML = `
-                    <div class="cert-card text-center">
-                        <h2 class="text-3xl font-black text-emerald-900 mb-2 uppercase">Official Certificate</h2>
-                        <p class="text-lg text-slate-500 italic mb-8">Biology Foundations Mastery</p>
-                        <p class="text-sm text-slate-400 mb-2 uppercase font-bold tracking-widest">Presented To:</p>
-                        <input type="text" placeholder="ENTER YOUR NAME" class="text-4xl font-black text-center w-full border-b-2 border-slate-200 mb-10 focus:outline-none placeholder-slate-200">
-                        <div class="flex justify-around items-center mb-10">
-                            <div class="text-left"><p class="text-2xl font-black text-emerald-600">${percentage}%</p><p class="text-xs uppercase font-bold text-slate-400">Final Score</p></div>
-                            <div class="h-20 w-20 bg-emerald-900 rounded-full flex items-center justify-center text-white font-bold text-xs text-center p-2">BIOLOGY SEAL</div>
-                            <div class="text-right"><p class="text-lg font-bold">Passed</p><p class="text-xs uppercase font-bold text-slate-400">Status</p></div>
-                        </div>
-                        <button onclick="location.reload()" class="bg-slate-900 text-white px-8 py-3 rounded-full font-bold">Restart Module</button>
-                    </div>
-                `;
+            if(pct >= 70) {
+                box.innerHTML = `<div class="cert-card text-center"><h2 class="text-3xl font-black text-emerald-900 mb-8 uppercase underline">Certificate of Achievement</h2><p class="mb-2">This certifies that</p><input type="text" placeholder="STUDENT NAME" class="text-4xl font-black text-center w-full border-b-2 mb-8 focus:outline-none"><p class="mb-8">Has mastered Biology Foundations with a score of <strong>${pct}%</strong></p><button onclick="location.reload()" class="bg-slate-900 text-white px-8 py-3 rounded-full font-bold">Restart</button></div>`;
             } else {
-                box.innerHTML = `
-                    <div class="text-center py-20">
-                        <h2 class="text-5xl font-black text-red-600 mb-4 uppercase">Keep Studying!</h2>
-                        <p class="text-2xl font-bold text-slate-700 mb-8">You scored ${percentage}% (Goal: 70%)</p>
-                        <button onclick="location.reload()" class="bg-red-600 text-white px-10 py-4 rounded-full font-bold shadow-xl">Try Again</button>
-                    </div>
-                `;
+                box.innerHTML = `<div class="text-center py-10"><h2 class="text-4xl font-black text-red-600 mb-4">KEEP STUDYING!</h2><p class="text-2xl mb-8">Score: ${pct}% (Need 70%)</p><button onclick="location.reload()" class="bg-red-600 text-white px-10 py-4 rounded-full font-bold">Try Again</button></div>`;
             }
         }
+        function closeModal() { document.getElementById('vocab-modal').classList.add('hidden'); }
     </script>
 </body>
 </html>
