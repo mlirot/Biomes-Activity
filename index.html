@@ -91,6 +91,7 @@
             <div id="biome-list">
                 <h2 class="text-3xl font-black text-blue-900 uppercase">2. Biome Catalog</h2>
                 <div class="mb-6 max-w-xs mx-auto text-center">
+                    
                     <img src="biome%20map.png" alt="Biome Map" class="w-full rounded shadow border">
                     <p class="text-xs mt-1 text-slate-400">Global Biome Distribution</p>
                 </div>
@@ -117,6 +118,11 @@
 
         <section id="sec-succession" style="display:none" class="page-sec space-y-8">
             <h2 class="text-3xl font-black text-orange-900 uppercase">3. Succession</h2>
+            
+            <div class="max-w-xl mx-auto bg-black rounded shadow-lg overflow-hidden">
+                <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/V49IovRSJDs" frameborder="0"></iframe>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
                 <div class="bg-white p-4 rounded shadow border-l-4 border-orange-500">
                     <h3 class="font-bold text-orange-600">Primary Succession</h3>
@@ -127,9 +133,7 @@
                     <p class="text-sm">Starts with <b>existing soil</b>. Happens after fires or farming. Much faster than primary.</p>
                 </div>
             </div>
-            <div class="max-w-xl mx-auto bg-black rounded shadow-lg overflow-hidden">
-                <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/V49IovRSJDs" frameborder="0"></iframe>
-            </div>
+
             <div id="succ-quiz-box" class="bg-white p-6 rounded shadow border max-w-xl mx-auto text-center">
                 <p id="s-text" class="text-xl font-medium mb-6">Test your Succession Knowledge</p>
                 <div id="s-btns" style="display:none" class="grid grid-cols-2 gap-4 max-w-xs mx-auto"></div>
@@ -236,7 +240,7 @@
             temp_grass: { 
                 t: "Temperate Grassland", 
                 img: "grassland.png",
-                c: "<p>Temperate grasslands are found further away from the equator than savanna grasslands. They are found in South Africa, Hungary, Argentina, North America, Russia and other countries. There is less rainfall than in the savanna. Around 25-85 cm of precipitation falls each year, and most of this is snow in the winter. The temperatures vary greatly between summer and winter - summers are hot, up to 38°C, and winters are cold.</p><p>Prairies and steppes are two types of temperate grassland; the difference is in the length of grasses that grow there. Prairies have taller grasses, while steppes have shorter grasses.</p><p>Due to little precipitation, there are very few to no trees or shrubs. Vegetation consists of grasses such as ryegrass, buffalo grass, purple needlegrass and foxtail. Animals found here include herds of bison and antelope; smaller mammals such as prairie dogs and jack rabbits; and predators and scavengers such as coyotes, falcons, foxes and lynx.</p>" 
+                c: "<p>Temperate grasslands are found further away from the equator than savanna grasslands. They are found in South Africa, Hungary, Argentina, North America, Russia and other countries. There is less rainfall than in the savanna. Around 25-85 cm of precipitation falls each year, and most of this is snow in the winter. The temperatures vary greatly between summer and winter - summers are hot, up to 38°C, and winters are cold.</p><p>Prairies and steppes are two types of temperate grassland; the difference is in the length of grasses that grow there. Prairies have taller grasses, while steppes have shorter grasses.</p><p>Due to little precipitation, there are very few to no trees or shrubs. Vegetation consists of grasses such as ryegrass, buffalo grass, purple needlegrass and foxtail. Animals found here include herds of bison and antelope; smaller mammals such as prairie dogs and jack rabbits; and predators and scavengers such as coyotes, falcons, foxes and lynx. Several species of snakes also thrive in grasslands, including the garter snake and the poisonous rattlesnake.</p>" 
             },
             rainforest: { 
                 t: "Tropical Rainforest (Focus: El Yunque)", 
@@ -265,7 +269,8 @@
             document.getElementById('biome-detail').style.display = 'block';
             document.getElementById('b-title').innerText = bD[k].t;
             document.getElementById('b-content').innerHTML = bD[k].c;
-            document.getElementById('b-img-container').innerHTML = `<img src="${bD[k].img}" class="w-64 h-auto rounded-xl shadow-lg border-4 border-white" alt="${bD[k].t}">`;
+            // IMAGE SIZE INCREASED TO w-96
+            document.getElementById('b-img-container').innerHTML = `<img src="${bD[k].img}" class="w-96 h-auto rounded-xl shadow-lg border-4 border-white" alt="${bD[k].t}">`;
             bCount++; if(bCount >= 3) done('biomes');
         }
         function closeB() {
@@ -303,7 +308,7 @@
             }
         }
 
-        // MASTERY QUIZ (15 Qs)
+        // MASTERY QUIZ
         const mQs = [
             {q: "Which biome has 4 seasons and deciduous trees?", o: ["Taiga", "Rainforest", "Forest", "Savanna"], a: "Forest"},
             {q: "The physical place where an organism lives is its:", o: ["Niche", "Habitat", "Ecosystem", "Biome"], a: "Habitat"},
@@ -352,8 +357,6 @@
                 box.innerHTML = `<div class="text-center py-10"><h2 class="text-3xl font-bold text-red-600 mb-4">NOT QUITE!</h2><p class="mb-6">You scored ${p}% (Need 70%). Study the modules again!</p><button onclick="location.reload()" class="bg-emerald-800 text-white px-8 py-3 rounded-full font-bold">Restart Course</button></div>`;
             }
         }
-
-        function closeModal() { document.getElementById('vocab-modal').style.display = 'none'; }
     </script>
 </body>
 </html>
