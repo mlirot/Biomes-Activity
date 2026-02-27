@@ -70,12 +70,14 @@
 
         <section id="sec-terms" style="display:none" class="page-sec space-y-8">
             <h2 class="text-3xl font-black text-emerald-900 uppercase">1. Foundational Terms</h2>
+            <p class="text-slate-500 italic">Click each term to see its definition before starting the quiz.</p>
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-xl shadow border-b-4 border-emerald-500 text-center font-bold">Habitat</div>
-                <div class="bg-white p-4 rounded-xl shadow border-b-4 border-emerald-500 text-center font-bold">Niche</div>
-                <div class="bg-white p-4 rounded-xl shadow border-b-4 border-emerald-500 text-center font-bold">Ecosystem</div>
-                <div class="bg-white p-4 rounded-xl shadow border-b-4 border-emerald-500 text-center font-bold">Biome</div>
+                <button onclick="alert('HABITAT: The actual physical place where an organism lives.')" class="bg-white p-4 rounded-xl shadow border-b-4 border-emerald-500 text-center font-bold hover:bg-emerald-50 transition">Habitat</button>
+                <button onclick="alert('NICHE: The specific role or job an organism has within its ecosystem.')" class="bg-white p-4 rounded-xl shadow border-b-4 border-emerald-500 text-center font-bold hover:bg-emerald-50 transition">Niche</button>
+                <button onclick="alert('ECOSYSTEM: A community of living organisms interacting with their non-living environment.')" class="bg-white p-4 rounded-xl shadow border-b-4 border-emerald-500 text-center font-bold hover:bg-emerald-50 transition">Ecosystem</button>
+                <button onclick="alert('BIOME: A large geographical area characterized by specific plants, animals, and climate.')" class="bg-white p-4 rounded-xl shadow border-b-4 border-emerald-500 text-center font-bold hover:bg-emerald-50 transition">Biome</button>
             </div>
+            
             <div id="term-quiz-box" class="bg-white p-6 rounded-xl shadow border text-center max-w-xl mx-auto">
                 <p id="t-text" class="text-xl font-medium mb-6">Test your knowledge of Habitat vs Niche.</p>
                 <div id="t-btns" style="display:none" class="grid grid-cols-2 gap-4 max-w-xs mx-auto">
@@ -91,7 +93,7 @@
             <div id="biome-list">
                 <h2 class="text-3xl font-black text-blue-900 uppercase">2. Biome Catalog</h2>
                 <div class="mb-6 max-w-xl mx-auto text-center">
-                    
+                    <img src="biome map.png" alt="Biome Map" class="w-full rounded shadow border">
                     <p class="text-xs mt-1 text-slate-400">Global Biome Distribution</p>
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 max-w-2xl mx-auto">
@@ -117,24 +119,20 @@
 
         <section id="sec-succession" style="display:none" class="page-sec space-y-8">
             <h2 class="text-3xl font-black text-orange-900 uppercase">3. Succession</h2>
-            
             <div class="max-w-xl mx-auto bg-black rounded shadow-lg overflow-hidden">
                 <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/V49IovRSJDs" frameborder="0"></iframe>
             </div>
-
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
                 <div class="bg-white p-4 rounded shadow border-l-4 border-orange-500">
                     <h3 class="font-bold text-orange-600">Primary Succession</h3>
                     <p class="text-sm">Starts from <b>bare rock</b> (no soil). Happens after volcanoes or glaciers. Takes a long time to build soil.</p>
-                    
                 </div>
                 <div class="bg-white p-4 rounded shadow border-l-4 border-green-500">
                     <h3 class="font-bold text-green-600">Secondary Succession</h3>
                     <p class="text-sm">Starts with <b>existing soil</b>. Happens after fires or farming. Much faster than primary.</p>
-                    
                 </div>
             </div>
-
             <div id="succ-quiz-box" class="bg-white p-6 rounded shadow border max-w-xl mx-auto text-center">
                 <p id="s-text" class="text-xl font-medium mb-6">Test your Succession Knowledge</p>
                 <div id="s-btns" style="display:none" class="grid grid-cols-2 gap-4 max-w-xs mx-auto"></div>
@@ -145,7 +143,6 @@
 
         <section id="sec-species" style="display:none" class="page-sec space-y-8">
             <h2 class="text-3xl font-black text-purple-900 uppercase">4. Species Roles</h2>
-            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
                 <div class="bg-emerald-50 p-4 rounded border border-emerald-200">
                     <h4 class="font-bold text-emerald-800">Foundation</h4>
@@ -160,14 +157,7 @@
                     <p class="text-xs">Non-native species that cause harm by outcompeting locals (e.g., Zebra Mussels, Knotweed).</p>
                 </div>
             </div>
-
             <div class="bg-white p-8 rounded shadow max-w-4xl mx-auto">
-                <div class="text-sm text-slate-700 space-y-4 mb-8 h-64 overflow-y-auto p-4 border rounded bg-slate-50">
-                    <p>Corals may look more like plants because of their hardened surfaces, but they are actually animals. They grow in large groups to form coral reefs on the seafloor. By modifying the environment, they make it suitable for other organisms to live. We call species that play a unique and essential role in creating and defining their community “<b>foundation species</b>”. Kelps are another type of foundation species, creating vast kelp forests for other species to live within.</p>
-                    <p>There are varying sizes of populations of each species in a community. Sometimes a species found in small numbers can have a surprisingly big impact on its community. We call species that have a disproportionately large effect on community structure “<b>keystone species</b>”. Gray wolves are a great example. When wolves were reintroduced to YellowStone National Park in 1995, the changes were remarkable. They created more resilient elk herds, aspen trees recovered, beaver colonies increased from 1 to 9, and they built dams that supported a whole other host of species. Parrotfish are also keystone species. They feed on macroalgae, found on corals. Without parrotfish, the macroalgae would completely cover the corals, suffocating and killing them.</p>
-                    <p>And finally we have “<b>invasive</b>” species. These are species that have been introduced to areas outside of their native range and can cause or have caused harm. For example, Japanese knotweed quickly grows to form dense patches that completely crowd out native plants. Zebra mussels are another invasive species. They displace native species and damage waterways and pipes.</p>
-                </div>
-
                 <table class="w-full text-sm">
                     <thead><tr class="text-left text-slate-500 uppercase text-xs"><th class="p-2">Organism</th><th>Identify Role</th></tr></thead>
                     <tbody>
@@ -191,7 +181,6 @@
     </main>
 
     <script>
-        // NAVIGATION
         function nav(id) {
             const all = document.getElementsByClassName('page-sec');
             for(let i=0; i<all.length; i++) all[i].style.display = 'none';
@@ -215,7 +204,6 @@
             }
         }
 
-        // TERMS
         const tD = [{q:"Squirrel nest in a tree.",a:"Habitat"},{q:"Bee transferring pollen.",a:"Niche"},{q:"Owl hunting at night.",a:"Niche"},{q:"Cave with steady temp.",a:"Habitat"},{q:"Decomposer in soil.",a:"Niche"}];
         let tI = 0;
         function startTerms() {
@@ -231,38 +219,13 @@
             } else { document.getElementById('t-hint').innerText = "Hint: Habitat = Home | Niche = Job"; }
         }
 
-        // BIOMES DATA
         const bD = {
-            savannah: { 
-                t: "Savanna", 
-                img: "savanna.png",
-                c: "<p>Savanna, otherwise known as tropical grassland, is found close to the equator. The largest savanna expanses are in Africa and South America. This biome has a warm, dry climate, with temperatures ranging from 20-30°C. The annual rainfall is around 50-125 cm. This falls during the wet season, transforming the land as vegetation rapidly grows. In the dry season, drought conditions can occur and there is mass migration of many animals to find water.</p><p>The vegetation is mostly grasses, such as Rhodes grass and star grass. There are a few shrubs and occasional trees, like the Acacia tree and the Baobab trees. There is not enough rainfall to sustain larger numbers of trees.</p><p>Many large mammals live here, including herds of grazers like antelope, zebra and wildebeest. There are also many species of predators, including lions, hyenas, cheetahs and wild dogs. Scavengers are common too, like vultures and jackals.</p>" 
-            },
-            temp_grass: { 
-                t: "Temperate Grassland", 
-                img: "grassland.png",
-                c: "<p>Temperate grasslands are found further away from the equator than savanna grasslands. They are found in South Africa, Hungary, Argentina, North America, Russia and other countries. There is less rainfall than in the savanna. Around 25-85 cm of precipitation falls each year, and most of this is snow in the winter. The temperatures vary greatly between summer and winter - summers are hot, up to 38°C, and winters are cold.</p><p>Prairies and steppes are two types of temperate grassland; the difference is in the length of grasses that grow there. Prairies have taller grasses, while steppes have shorter grasses.</p><p>Due to little precipitation, there are very few to no trees or shrubs. Vegetation consists of grasses such as ryegrass, buffalo grass, purple needlegrass and foxtail. Animals found here include herds of bison and antelope; smaller mammals such as prairie dogs and jack rabbits; and predators and scavengers such as coyotes, falcons, foxes and lynx. Several species of snakes also thrive in grasslands, including the garter snake and the poisonous rattlesnake.</p>" 
-            },
-            rainforest: { 
-                t: "Tropical Rainforest (Focus: El Yunque)", 
-                img: "rainforest.png",
-                c: "<p>This biome lies close to the equator, in an area called the tropics. The Amazon rainforest in Brazil is the largest in the world. As the name suggests, there is a lot of rainfall - 300 cm annually - which is the most of any biome. Average yearly temperature is 25-30°C.</p><p><b>El Yunque</b> in Puerto Rico is the only tropical rainforest in the U.S. National Forest System. Rainforests have very high biodiversity, home to more than half of Earth’s species despite covering only 6% of the surface.</p><p>Vegetation forms a dense canopy of giant trees (up to 75m). Mammals include howler monkeys, sloths, and jaguars. The Brazil Nut Tree can live for over 1,000 years!</p>" 
-            },
-            temp_forest: { 
-                t: "Deciduous Forest", 
-                img: "deciduous%20forest.png",
-                c: "<p>Temperate forest, also known as deciduous forest, is found at mid-latitudes. Europe, Eastern U.S., Canada, China and Japan all have temperate forests. This biome experiences all four seasons, with warm summers and cold winters. The yearly average temperature is around 10°C with 75-150 cm of rain.</p><p>Trees like oak, maple, beech and birch lose their leaves in the fall, entering dormancy to survive winter. Mammals include squirrels, deer, black bears, and bobcats.</p>" 
-            },
-            taiga: { 
-                t: "Taiga", 
-                img: "taiga.png",
-                c: "<p>The taiga is the largest terrestrial biome, found across Canada, Russia, and Scandinavia at high northern latitudes. It is very cold and dry; precipitation is mostly snow (25-75 cm). Winter temps can drop to -54°C.</p><p>Trees are usually coniferous (pines, spruces) with needles to shed snow. Animals like wolves, moose, and lynx have thick fur and small ears to conserve heat.</p>" 
-            },
-            desert: { 
-                t: "Desert", 
-                img: "desert.png",
-                c: "<p>Deserts are inhospitable environments with the lowest precipitation - below 50 cm per year. They can be hot or cold, with massive temp swings (38°C to -4°C in one day). Consists of cacti, succulents, and thorny bushes adapted to store water.</p><p>Reptiles, kangaroo rats, and black-tailed jackrabbits use behavioral strategies to survive the extreme heat and cold.</p>" 
-            }
+            savannah: { t: "Savanna", img: "savanna.png", c: "<p>Warm, dry climate with seasonal rain. Mostly grasses and few trees.</p>" },
+            temp_grass: { t: "Temperate Grassland", img: "grassland.png", c: "<p>Hot summers, cold winters. Rich soil, very few trees.</p>" },
+            rainforest: { t: "Tropical Rainforest", img: "rainforest.png", c: "<p>Highest biodiversity. Massive rainfall and warm year-round.</p>" },
+            temp_forest: { t: "Deciduous Forest", img: "deciduous forest.png", c: "<p>Four seasons. Trees lose leaves in fall.</p>" },
+            taiga: { t: "Taiga", img: "taiga.png", c: "<p>Largest terrestrial biome. Cold and dry with coniferous trees.</p>" },
+            desert: { t: "Desert", img: "desert.png", c: "<p>Lowest precipitation. Extreme temperature swings.</p>" }
         };
 
         function openB(k) {
@@ -278,7 +241,6 @@
             document.getElementById('biome-list').style.display = 'block';
         }
 
-        // SUCCESSION
         const sD = [{q:"Volcano creates bare rock.",a:"Primary"},{q:"Glacier leaves bare rock.",a:"Primary"},{q:"Fire burns forest, soil stays.",a:"Secondary"},{q:"Abandoned farm grows weeds.",a:"Secondary"},{q:"Which is faster?",a:"Secondary"}];
         let sI = 0;
         function startSucc() {
@@ -298,7 +260,6 @@
             } else { document.getElementById('s-hint').innerText = "Hint: Primary = Rock | Secondary = Soil"; }
         }
 
-        // SPECIES
         let spC = 0;
         function checkSp(i, c) {
             if(i.value.trim().toLowerCase() === c.toLowerCase()) {
@@ -308,7 +269,6 @@
             }
         }
 
-        // MASTERY QUIZ
         const mQs = [
             {q: "Which biome has 4 seasons and deciduous trees?", o: ["Taiga", "Rainforest", "Forest", "Savanna"], a: "Forest"},
             {q: "The physical place where an organism lives is its:", o: ["Niche", "Habitat", "Ecosystem", "Biome"], a: "Habitat"},
@@ -347,14 +307,14 @@
                         <h1 class="text-4xl font-serif text-emerald-900 mb-2">CERTIFICATE OF MASTERY</h1>
                         <p class="text-slate-600 italic mb-8">This certifies that</p>
                         <input type="text" placeholder="[ENTER STUDENT NAME]" class="bg-transparent border-b-2 border-emerald-900 text-3xl font-bold text-center w-full mb-8 outline-none text-emerald-900">
-                        <p class="text-slate-700 mb-8">has successfully completed the 10th Grade Bio-Interactive Course with a score of <span class="text-2xl font-black">${p}%</span></p>
+                        <p class="text-slate-700 mb-8">has successfully completed the 10th Grade Bio-Interactive Course with a score of <span class="text-2xl font-black">${mS}/15 (${p}%)</span></p>
                         <div class="flex justify-between items-end mt-12 opacity-50 text-xs font-mono uppercase">
                             <div>Date: ${new Date().toLocaleDateString()}</div>
                             <div class="border-t border-emerald-900 px-4">Instructor Signature</div>
                         </div>
                     </div>`;
             } else {
-                box.innerHTML = `<div class="text-center py-10"><h2 class="text-3xl font-bold text-red-600 mb-4">NOT QUITE!</h2><p class="mb-6">You scored ${p}% (Need 70%). Study the modules again!</p><button onclick="location.reload()" class="bg-emerald-800 text-white px-8 py-3 rounded-full font-bold">Restart Course</button></div>`;
+                box.innerHTML = `<div class="text-center py-10"><h2 class="text-3xl font-bold text-red-600 mb-4">NOT QUITE!</h2><p class="mb-6">You scored ${mS}/15 (${p}%). Need 70%. Study the modules again!</p><button onclick="location.reload()" class="bg-emerald-800 text-white px-8 py-3 rounded-full font-bold">Restart Course</button></div>`;
             }
         }
     </script>
