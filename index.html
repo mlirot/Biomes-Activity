@@ -92,7 +92,6 @@
             <div id="biome-list">
                 <h2 class="text-3xl font-black text-blue-900 uppercase">2. Biome Catalog</h2>
                 <div class="mb-6 max-w-xl mx-auto text-center">
-                    
                     <img src="biome map.png" alt="Biome Map" class="w-full rounded shadow border">
                     <p class="text-xs mt-1 text-slate-400">Global Biome Distribution</p>
                 </div>
@@ -148,6 +147,15 @@
                     <p>There are varying sizes of populations of each species in a community. Sometimes a species found in small numbers can have a surprisingly big impact on its community. We call species that have a disproportionately large effect on community structure <b>“keystone species”</b>. Gray wolves are a great example. When wolves were reintroduced to Yellowstone National Park in 1995, the changes were remarkable. They created more resilient elk herds, aspen trees recovered, beaver colonies increased from 1 to 9, and they built dams that supported a whole other host of species. The effects of the wolves are still being researched and monitored. Parrotfish are also keystone species. They feed on macroalgae, found on corals. Without parrotfish, the macroalgae would completely cover the corals, suffocating and killing them. This would be bad news for the 25% of the world’s fishes who depend on coral reef.</p>
                     <p>And finally we have <b>“invasive”</b> species. These are species that have been introduced to areas outside of their native range and can cause or have caused harm. For example, Japanese knotweed (Reynoutria japonica) is found in North America and Europe. It is considered by the World Conservation Union as one of the world's worst invasive species. It quickly grows to form dense patches that completely crowd out native plants. Zebra mussels are another invasive species. They are believed to have spread by the passage of boats and ships from Eastern Europe to other parts of the world. They are now found as invasive species in Western Europe and North America, where they displace native species and damage waterways and pipes.</p>
                 </div>
+
+                <div class="mt-8 p-4 bg-purple-50 rounded-xl border border-purple-100">
+                    <h4 class="font-bold text-purple-900 mb-2 uppercase text-sm tracking-wider">Quick Reference Guide</h4>
+                    <ul class="text-sm space-y-1 text-slate-600">
+                        <li><b>Foundation:</b> Species that physically build or modify the habitat (e.g., Corals).</li>
+                        <li><b>Keystone:</b> Small population, but huge impact on ecosystem balance (e.g., Wolves).</li>
+                        <li><b>Invasive:</b> Non-native species that cause harm to the local environment (e.g., Zebra Mussels).</li>
+                    </ul>
+                </div>
             </div>
             
             <div class="bg-white p-8 rounded shadow max-w-4xl mx-auto">
@@ -155,11 +163,11 @@
                 <table class="w-full text-sm">
                     <thead><tr class="text-left text-slate-500 uppercase text-xs"><th class="p-2">Organism</th><th>Identify Role</th></tr></thead>
                     <tbody>
-                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Corals</td><td class="p-3 border-b"><input type="text" oninput="checkSp(this, 'Foundation')" class="w-full p-2 border rounded uppercase text-center" placeholder="Role..."></td></tr>
-                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Gray Wolves</td><td class="p-3 border-b"><input type="text" oninput="checkSp(this, 'Keystone')" class="w-full p-2 border rounded uppercase text-center" placeholder="Role..."></td></tr>
-                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Japanese Knotweed</td><td class="p-3 border-b"><input type="text" oninput="checkSp(this, 'Invasive')" class="w-full p-2 border rounded uppercase text-center" placeholder="Role..."></td></tr>
-                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Parrotfish</td><td class="p-3 border-b"><input type="text" oninput="checkSp(this, 'Keystone')" class="w-full p-2 border rounded uppercase text-center" placeholder="Role..."></td></tr>
-                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Zebra Mussels</td><td class="p-3 border-b"><input type="text" oninput="checkSp(this, 'Invasive')" class="w-full p-2 border rounded uppercase text-center" placeholder="Role..."></td></tr>
+                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Corals</td><td class="p-3 border-b"><input type="text" id="sp-0" oninput="checkSp(this, 'Foundation', 0)" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="Role..."></td></tr>
+                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Gray Wolves</td><td class="p-3 border-b"><input type="text" id="sp-1" oninput="checkSp(this, 'Keystone', 1)" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="Role..."></td></tr>
+                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Japanese Knotweed</td><td class="p-3 border-b"><input type="text" id="sp-2" oninput="checkSp(this, 'Invasive', 2)" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="Role..."></td></tr>
+                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Parrotfish</td><td class="p-3 border-b"><input type="text" id="sp-3" oninput="checkSp(this, 'Keystone', 3)" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="Role..."></td></tr>
+                        <tr><td class="p-3 bg-slate-50 font-bold border-b">Zebra Mussels</td><td class="p-3 border-b"><input type="text" id="sp-4" oninput="checkSp(this, 'Invasive', 4)" class="w-full p-2 border rounded uppercase text-center focus:ring-2 focus:ring-purple-400 outline-none" placeholder="Role..."></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -205,7 +213,7 @@
             }
         }
 
-        // TERMS QUIZ (UNTOUCHED)
+        // TERMS QUIZ
         const tD = [{q:"Squirrel nest in a tree.",a:"Habitat"},{q:"Bee transferring pollen.",a:"Niche"},{q:"Owl hunting at night.",a:"Niche"},{q:"Cave with steady temp.",a:"Habitat"},{q:"Decomposer in soil.",a:"Niche"}];
         let tI = 0;
         function startTerms() { document.getElementById('t-start').style.display = 'none'; document.getElementById('t-btns').style.display = 'grid'; loadT(); }
@@ -217,7 +225,7 @@
             } else { document.getElementById('t-hint').innerText = "Hint: Habitat = Home | Niche = Job"; }
         }
 
-        // BIOMES DATA (FULL TEXT RESTORED)
+        // BIOMES DATA
         const bD = {
             savannah: { 
                 t: "Savanna", 
@@ -273,7 +281,7 @@
         }
         function closeB() { document.getElementById('biome-detail').style.display = 'none'; document.getElementById('biome-list').style.display = 'block'; }
 
-        // SUCCESSION (UNTOUCHED)
+        // SUCCESSION
         const sD = [{q:"Volcano creates bare rock.",a:"Primary"},{q:"Glacier leaves bare rock.",a:"Primary"},{q:"Fire burns forest, soil stays.",a:"Secondary"},{q:"Abandoned farm grows weeds.",a:"Secondary"},{q:"Which is faster?",a:"Secondary"}];
         let sI = 0;
         function startSucc() { document.getElementById('s-start').style.display = 'none'; document.getElementById('s-btns').style.display = 'grid'; loadS(); }
@@ -288,12 +296,20 @@
             } else { document.getElementById('s-hint').innerText = "Hint: Primary = Rock | Secondary = Soil"; }
         }
 
-        // SPECIES (RESTORED CHALLENGE & TEXT)
+        // SPECIES (UPDATED LOGIC FOR AUTO-FOCUS)
         let spC = 0;
-        function checkSp(i, c) {
+        function checkSp(i, c, index) {
             if(i.value.trim().toLowerCase() === c.toLowerCase()) {
                 i.className = "w-full p-2 border rounded bg-green-100 text-green-700 font-bold text-center";
                 i.disabled = true; spC++;
+                
+                // Move focus to next input box
+                const nextId = "sp-" + (index + 1);
+                const nextEl = document.getElementById(nextId);
+                if(nextEl) {
+                    nextEl.focus();
+                }
+
                 if(spC === 5) done('species');
             }
         }
