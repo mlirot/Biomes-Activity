@@ -214,8 +214,8 @@
         }
 
         // TERMS QUIZ
-        const tD = [{q:"Squirrel nest in a tree.",a:"Habitat"},{q:"Bee transferring pollen.",a:"Niche"},{q:"Owl hunting at night.",a:"Niche"},{q:"Cave with steady temp.",a:"Habitat"},{q:"Decomposer in soil.",a:"Niche"}];
-        let tI = 0;
+        const tD = [{q:"A squirrel buidling a nest in a tree.",a:"Habitat"},{q:"Bee transferring pollen between flowers.",a:"Niche"},{q:"Owl hunting during the night.",a:"Niche"},{q:"Foxes living in a burrow in the woods.",a:"Habitat"},{q:"Decomposer in soil breaking down dead plants and animals.",a:"Niche"}];
+        let tI = 0
         function startTerms() { document.getElementById('t-start').style.display = 'none'; document.getElementById('t-btns').style.display = 'grid'; loadT(); }
         function loadT() { document.getElementById('t-text').innerText = tD[tI].q; document.getElementById('t-hint').innerText = ""; }
         function handleTerm(a) {
@@ -322,7 +322,7 @@
             {q: "Species with a huge impact despite small numbers are:", o: ["Invasive", "Keystone", "Foundation", "Pioneer"], a: "Keystone"},
             {q: "The largest terrestrial biome, cold and dry with pines:", o: ["Desert", "Taiga", "Savanna", "Rainforest"], a: "Taiga"},
             {q: "The specific 'role' of an organism is its:", o: ["Habitat", "Niche", "Biome", "Species"], a: "Niche"},
-            {q: "Secondary succession is faster because:", o: ["Soil exists", "More rock", "No animals", "It occurs in water"], a: "Soil exists"},
+            {q: "Secondary succession is faster because:", o: ["Soil is already present at the start", "There are more trees", "It happens over a shorter period of time", "It only occurs in forests"], a: "Soil is already present at the start"},
             {q: "Non-native species that cause harm are:", o: ["Foundation", "Invasive", "Keystone", "Pioneer"], a: "Invasive"},
             {q: "The only tropical rainforest in the US National Forest system:", o: ["Amazon", "El Yunque", "Congo", "Daintree"], a: "El Yunque"},
             {q: "Corals are ________ species because they build the environment.", o: ["Keystone", "Invasive", "Foundation", "Pioneer"], a: "Foundation"},
@@ -361,3 +361,4 @@
     </script>
 </body>
 </html>
+
